@@ -1,15 +1,53 @@
 const mongoose = require("mongoose");
-
+const bcrypt = require("bcrypt");
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
-  fullname: { type: String, required: true },
-  username: { type: String, required: true },
-  password: { type: String, required: true },
-  favTeam: { type: String, required: true },
-  myTeam: { type: Array },
+// Create Schema
+const UserSchema = new Schema({
+  fullname: {
+    type: String,
+    required: true,
+  },
+  username: {
+    type: String,
+    required: true,
+    min: 6,
+    max: 15,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  date: {
+    type: Date,
+    default: Date.now,
+  },
+  myteam: [
+    { type: mongoose.Schema.Types.ObjectId, ref: "MyTeam", min: 0, max: 11 },
+  ],
 });
 
-const User = mongoose.model("User", userSchema);
+UserSchema.pre("save", function (next) {
+  if (!this.isModified("password")) return next();
+  bcrypt.hash(this.password, 10, (err, passwordHash) => {
+    if (err) return next(err);
+    this.password = passwordHash;
+    next();
+  });
+});
 
-module.exports = User;
+UserSchema.methods.comparePassword = function (password, cb) {
+  bcrypt.compare(password, this.password, (err, isMatch) => {
+    if (err) return cb(err);
+    else {
+      if (!isMatch) return cb(null, isMatch);
+      return cb(null, this);
+    }
+  });
+};
+
+module.exports = User = mongoose.model("User", UserSchema);
