@@ -1,0 +1,80 @@
+/* Gradient transparent - color - transparent */
+
+.style-two {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.75), rgba(0, 0, 0, 0));
+}
+html,
+body,
+header,
+.view {
+    height: 100%;
+}
+
+@media (max-width: 740px) {
+    html,
+    body,
+    header,
+    .view {
+    height: 100vh;
+    }
+}
+
+.top-nav-collapse {
+    background-color: #4d0569d8 !important;
+}
+
+.navbar:not(.top-nav-collapse) {
+    background: transparent !important;
+}
+
+@media (max-width: 991px) {
+    .navbar:not(.top-nav-collapse) {
+    background: #4d0569d8 !important;
+    }
+}
+
+.rgba-gradient {
+    /* background-image: url("images/r1.jpg"); */
+    background: linear-gradient(45deg, rgba(0, 247, 255, 0.438), rgba(10, 44, 105, 0.651) 100%);
+    /* background: linear-gradient(45deg, rgba(213, 193, 15, 0.6), rgba(75, 44, 9, 0.69) 100%); */
+}
+
+/**/
+
+.md-pills .nav-link.active {
+  color: #fff;
+  background-color: #616161;
+}
+button.close {
+  position: absolute;
+  right: 0;
+  z-index: 2;
+  padding-right: 1rem;
+  padding-top: .6rem;
+}
+.center2 {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25%;
+}
+/* @import url(https://fonts.googleapis.com/css?family=Raleway:400,800) */
+/* @import url('https://crmrkt.com/J03byx') */
+/* @import url(//db.onlinewebfonts.com/c/9bea185ed765307a2c0ed0e1e78c3c05?family=billieBoldHand); */
+/**/
+@media screen and ( max-height: 400px ){
+    html,
+    body,
+    header,
+    .view {
+    height: 600px;
+    }
+}
+
+.gradient-text {
+    background: -webkit-linear-gradient(left, #ffff00 0%, #990099 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
