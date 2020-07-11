@@ -1,20 +1,35 @@
 import React from "react";
 import Navbar from "./Components/Navbar";
-import Home from "./Components/Home";
-import Register from "./Components/Register";
-import Login from "./Components/Login";
+import Home from "./Pages/Home";
+import Register from "./Pages/Register";
+import Login from "./Pages/Login";
+import MyTeam from "./Pages/MyTeam";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+
+import Wrapper from "./Components/Wrapper";
+
+const styles = {
+  headerB: {
+    fontFamily: "'Architects Daughter', cursive" 
+  },
+  headerC: {
+    fontFamily: "'Trade Winds', cursive" 
+  }
+}
 
 function App() {
   return (
-    <div>
-      <Router>
+    <Router>
+      <header style={styles.headerB}>
         <Navbar />
-        <Route exact path="/" component={Home} />
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
-      </Router>
-    </div>
+        <Wrapper basename="/">
+          <Route exact path="/" component={Home} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+          <Route path="/myteam" component={MyTeam} />
+        </Wrapper>
+      </header>
+    </Router>
   );
 }
 
