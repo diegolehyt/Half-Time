@@ -1,9 +1,23 @@
 import React from "react";
+import Intro from "../Components/Intro";
+import Video from "../Components/Video";
+import Mask from "../Components/Mask";
+import Container from "../Components/Container";
+import AboutContent from "../Components/AboutContent";
+import ResultContent from "../Components/ResultContent";
 
-export default function Home() {
+function Home() {
   return (
-    <div>
-      <h1>HomePage</h1>
-    </div>
+    <Intro>
+      <Video/>
+      <AboutContent/>
+      <Mask>
+        <Container>
+          <ResultContent/>
+        </Container>
+      </Mask>
+    </Intro>
   );
 }
+
+export default Home;
