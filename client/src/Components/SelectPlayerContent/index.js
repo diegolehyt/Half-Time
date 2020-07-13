@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, {useState, useEffect} from "react";
 import "./style.css";
 import players from "./players.json"
-import PlayerCard from "../PlayerCard/index"
-
-import * as API from '../../utils/API'
+import PlayerCardB from "../PlayerCardB/index"
 
 const styles = {
   headerB: {
@@ -19,7 +17,7 @@ const styles = {
     textAlign: "center",
     marginTop: '77px',
     marginBottom: '70px',
-    height: "140vh",
+    height: "400vh",
     width: "100vh"
   },
   headerE: {
@@ -28,141 +26,70 @@ const styles = {
   }
 }
 
+function SelectPlayerContent() {
+  const [selectedPlayers, setSelectedPlayer] = useState([])
 
+  const [playerF, setPlayerF] = useState("")
 
-// useEffect (()=> {
-//   fetch('https://localhost/3000/api/online', { mode: 'no-cors' })
-//   .then(function(response) {
-//     return response.json();
-//   })
-//   .then(function(data) {
+  const team = []
 
+  const onPlayerSelect = (player) => {
+    setPlayerF(player)
+    // team.push(player)
+    // setSelectedPlayer(team) // ([1, 2, 3])
 
-//     console.log(data);
-//   });
-// }, [])
+    // add player to database
+    // console.log(selectedPlayers)
 
+    // console.log(player)
+    // console.log(team)
+  }
 
-
-function MyTeamContent() {
-
-  // const [player, setPlayer] = useState({})
-
-  const [myTeam, setMyteam] = useState([])
-
-  const [player1, setPlayer1] = useState({})
-  const [player2, setPlayer2] = useState({})
-  const [player3, setPlayer3] = useState({})
-  const [player4, setPlayer4] = useState({})
-  const [player5, setPlayer5] = useState({})
-  const [player6, setPlayer6] = useState({})
-  const [player7, setPlayer7] = useState({})
-  const [player8, setPlayer8] = useState({})
-  const [player9, setPlayer9] = useState({})
-  const [player10, setPlayer10] = useState({})
-  const [player11, setPlayer11] = useState({})
-
-  const myTEAM = []
-
-  // Renders and gets myteams array from the current online user database (API)
   useEffect(() => {
     // For demonstration purposes, we mock an API call.
-    API.getDeveloper().then(res => {
-      setPlayer1(res.myteam[0])
-      setPlayer2(res.myteam[1])
-      setPlayer3(res.myteam[2])
-      setPlayer4(res.myteam[3])
-      setPlayer5(res.myteam[4])
-      setPlayer6(res.myteam[5])
-      setPlayer7(res.myteam[6])
-      setPlayer8(res.myteam[7])
-      setPlayer9(res.myteam[8])
-      setPlayer10(res.myteam[9])
-      setPlayer11(res.myteam[10])
-      
-      setMyteam(res.myteam)
+    team.push(playerF)
+    console.log(team)
+    setSelectedPlayer(team)
+  
+  }, [playerF])
 
-      console.log('Developer State:')
-      // console.log(res.myteam)
-      console.log(myTEAM)
-    })
-  }, [])
+  const onPlayerDelete = (player) => {
 
-  const handleSubmit = function () {
-    API.getDeveloper().then(res => {
-      setMyteam(res)
-      console.log('Developer State:')
-      console.log(res.myteam)
-    })
-
+    // add player to database
+    console.log(player)
   }
 
   return (
     
     <div  style={styles.headerD} className="col-12 bcImg img-fluid">
+      <div>
+        {selectedPlayers.map(player => (
+          <p>{player.name}</p>
+        ))}
+      </div>
 
-
-      {/* <li>{players[0].name} <button onClick={()=>setPlayer(players[0])} > add </button> </li> */}
-
-      <button onClick={()=>handleSubmit()}>
-        API
-      </button>
-
-      <p>{player1.name}</p>
-      <p>{player2.name}</p>
-      {/* <p>{myTeam[0].name}</p> */}
-      {/* <p>{myTeam[2].name}</p> */}
-
-      {myTeam.map(playerT => (
-        <PlayerCard
-          id={playerT.id}
-          name={playerT.name}
-          position={playerT.position}
-          player_image={playerT.player_image}
-          nation_image={playerT.nation_image}
-          club_image={playerT.club_image}
-          overall={playerT.rating_overall}
-          pace={playerT.rating_pace}
-          shooting={playerT.rating_shooting}
-          passing={playerT.rating_passing}
-          dribbling={playerT.rating_dribbling}
-          defense={playerT.rating_defense}
-          physical={playerT.rating_physical}
-        />
-      ))}
-
-
+      <div>
+        {playerF.name}
+      </div>
 
       <div className="row d-flex justify-content-center">
-        <PlayerCard
-          id={player1.id}
-          name={player1.name}
-          position={player1.position}
-          player_image={player1.player_image}
-          nation_image={player1.nation_image}
-          club_image={player1.club_image}
-          overall={player1.rating_overall}
-          pace={player1.rating_pace}
-          shooting={player1.rating_shooting}
-          passing={player1.rating_passing}
-          dribbling={player1.rating_dribbling}
-          defense={player1.rating_defense}
-          physical={player1.rating_physical}
-        /> 
-        <PlayerCard
-          id={player2.id}
-          name={player2.name}
-          position={player2.position}
-          player_image={player2.player_image}
-          nation_image={player2.nation_image}
-          club_image={player2.club_image}
-          overall={player2.rating_overall}
-          pace={player2.rating_pace}
-          shooting={player2.rating_shooting}
-          passing={player2.rating_passing}
-          dribbling={player2.rating_dribbling}
-          defense={player2.rating_defense}
-          physical={player2.rating_physical}
+        {players.map(player => (
+          <PlayerCardB key={player.name} onSelect={onPlayerSelect} onDelete={onPlayerDelete} classB={"no"} {...player}/> 
+        ))}
+        {/* <PlayerCard
+          id={players[1].id}
+          name={players[1].name}
+          position={players[1].position}
+          player_image={players[1].player_image}
+          nation_image={players[1].nation_image}
+          club_image={players[1].club_image}
+          overall={players[1].rating_overall}
+          pace={players[1].rating_pace}
+          shooting={players[1].rating_shooting}
+          passing={players[1].rating_passing}
+          dribbling={players[1].rating_dribbling}
+          defense={players[1].rating_defense}
+          physical={players[1].rating_physical}
         />
         <PlayerCard
           id={players[2].id}
@@ -184,19 +111,19 @@ function MyTeamContent() {
 
       <div className="row d-flex justify-content-center">
         <PlayerCard
-          id={players[3].id}
-          name={players[3].name}
-          position={players[3].position}
-          player_image={players[3].player_image}
-          nation_image={players[3].nation_image}
-          club_image={players[3].club_image}
-          overall={players[3].rating_overall}
-          pace={players[3].rating_pace}
-          shooting={players[3].rating_shooting}
-          passing={players[3].rating_passing}
-          dribbling={players[3].rating_dribbling}
-          defense={players[3].rating_defense}
-          physical={players[3].rating_physical}
+          id={players[12].id}
+          name={players[12].name}
+          position={players[12].position}
+          player_image={players[12].player_image}
+          nation_image={players[12].nation_image}
+          club_image={players[12].club_image}
+          overall={players[12].rating_overall}
+          pace={players[12].rating_pace}
+          shooting={players[12].rating_shooting}
+          passing={players[12].rating_passing}
+          dribbling={players[12].rating_dribbling}
+          defense={players[12].rating_defense}
+          physical={players[12].rating_physical}
         />
         <PlayerCard
           id={players[4].id}
@@ -310,7 +237,7 @@ function MyTeamContent() {
           dribbling={players[10].rating_dribbling}
           defense={players[10].rating_defense}
           physical={players[10].rating_physical}
-        />
+        /> */}
       </div>
 
 
@@ -318,4 +245,4 @@ function MyTeamContent() {
   )
 }
 
-export default MyTeamContent;
+export default SelectPlayerContent;
