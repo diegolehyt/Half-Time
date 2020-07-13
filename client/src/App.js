@@ -4,6 +4,7 @@ import Home from "./Pages/Home";
 import Register from "./Pages/Register";
 import Login from "./Pages/Login";
 import MyTeam from "./Pages/MyTeam";
+import SelectPlayers from "./Pages/SelectPlayers";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Wrapper from "./Components/Wrapper";
@@ -27,6 +28,7 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/myteam" component={MyTeam} />
+          <Route path="/selectplayers" component={SelectPlayers} />
         </Wrapper>
       </header>
     </Router>
