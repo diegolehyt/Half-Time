@@ -15,8 +15,14 @@ function PlayerCardB(props) {
 
     const playerSelected = () => {
       props.onSelect(props)
-      console.log(props)
-      setBool(true)
+      // console.log(props) -------------------- important check
+      if (bool) {
+        setBool(false)
+      }
+      else {
+        setBool(true)
+      }
+      
       // props.classB = "yes"
     }
 

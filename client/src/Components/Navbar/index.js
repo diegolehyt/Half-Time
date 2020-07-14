@@ -87,9 +87,9 @@ const Navbar = (props) => {
           </ul>
           <ul className="navbar-nav nav-flex-icons">
             <li className="nav-item">
-              <a className="nav-link" href="https://www.linkedin.com/in/diego-lehyt-1616b11a6/" target="_blank" rel='noopener noreferrer'>
+              <Link className="nav-link" to="/game">
                 <i className="fas fa-futbol light-green-text-2"></i>
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="https://github.com/diegolehyt" target="_blank" rel='noopener noreferrer'>

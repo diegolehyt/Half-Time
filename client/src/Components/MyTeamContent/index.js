@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from "react-router-dom";
 import "./style.css";
-import players from "./players.json"
+// import players from "./players.json"
 import PlayerCard from "../PlayerCard/index"
 
 import * as API from '../../utils/API'
@@ -25,6 +26,11 @@ const styles = {
   headerE: {
     width: "300px",
     height: '300px'
+  },
+  buttonS: {
+    // marginLeft: '20px',
+    // marginTop: '0px',
+    fontWeight: 'bold'
   }
 }
 
@@ -88,14 +94,14 @@ function MyTeamContent() {
     })
   }, [])
 
-  const handleSubmit = function () {
-    API.getDeveloper().then(res => {
-      setMyteam(res)
-      console.log('Developer State:')
-      console.log(res.myteam)
-    })
+  // const handleSubmit = function () {
+  //   API.getDeveloper().then(res => {
+  //     setMyteam(res)
+  //     console.log('Developer State:')
+  //     console.log(res.myteam)
+  //   })
 
-  }
+  // }
 
   return (
     
@@ -104,16 +110,16 @@ function MyTeamContent() {
 
       {/* <li>{players[0].name} <button onClick={()=>setPlayer(players[0])} > add </button> </li> */}
 
-      <button onClick={()=>handleSubmit()}>
+      {/* <button onClick={()=>handleSubmit()}>
         API
-      </button>
+      </button> */}
 
-      <p>{player1.name}</p>
-      <p>{player2.name}</p>
+      {/* <p>{player1.name}</p>
+      <p>{player2.name}</p> */}
       {/* <p>{myTeam[0].name}</p> */}
       {/* <p>{myTeam[2].name}</p> */}
 
-      {myTeam.map(playerT => (
+      {/* {myTeam.map(playerT => (
         <PlayerCard
           id={playerT.id}
           name={playerT.name}
@@ -129,11 +135,20 @@ function MyTeamContent() {
           defense={playerT.rating_defense}
           physical={playerT.rating_physical}
         />
-      ))}
+      ))} */}
 
 
 
       <div className="row d-flex justify-content-center">
+
+        <div className="col-12">
+          <Link to="/game" className="btn btn-outline-warning yellow" style={styles.buttonS}>
+            Play a Match{" "}
+            <i className="fas fa-futbol light-green-text-2"></i>
+          </Link>
+        </div>
+
+
         <PlayerCard
           id={player1.id}
           name={player1.name}
@@ -165,151 +180,151 @@ function MyTeamContent() {
           physical={player2.rating_physical}
         />
         <PlayerCard
-          id={players[2].id}
-          name={players[2].name}
-          position={players[2].position}
-          player_image={players[2].player_image}
-          nation_image={players[2].nation_image}
-          club_image={players[2].club_image}
-          overall={players[2].rating_overall}
-          pace={players[2].rating_pace}
-          shooting={players[2].rating_shooting}
-          passing={players[2].rating_passing}
-          dribbling={players[2].rating_dribbling}
-          defense={players[2].rating_defense}
-          physical={players[2].rating_physical}
+          id={player3.id}
+          name={player3.name}
+          position={player3.position}
+          player_image={player3.player_image}
+          nation_image={player3.nation_image}
+          club_image={player3.club_image}
+          overall={player3.rating_overall}
+          pace={player3.rating_pace}
+          shooting={player3.rating_shooting}
+          passing={player3.rating_passing}
+          dribbling={player3.rating_dribbling}
+          defense={player3.rating_defense}
+          physical={player3.rating_physical}
         />
       </div>
 
 
       <div className="row d-flex justify-content-center">
         <PlayerCard
-          id={players[3].id}
-          name={players[3].name}
-          position={players[3].position}
-          player_image={players[3].player_image}
-          nation_image={players[3].nation_image}
-          club_image={players[3].club_image}
-          overall={players[3].rating_overall}
-          pace={players[3].rating_pace}
-          shooting={players[3].rating_shooting}
-          passing={players[3].rating_passing}
-          dribbling={players[3].rating_dribbling}
-          defense={players[3].rating_defense}
-          physical={players[3].rating_physical}
+          id={player4.id}
+          name={player4.name}
+          position={player4.position}
+          player_image={player4.player_image}
+          nation_image={player4.nation_image}
+          club_image={player4.club_image}
+          overall={player4.rating_overall}
+          pace={player4.rating_pace}
+          shooting={player4.rating_shooting}
+          passing={player4.rating_passing}
+          dribbling={player4.rating_dribbling}
+          defense={player4.rating_defense}
+          physical={player4.rating_physical}
         />
         <PlayerCard
-          id={players[4].id}
-          name={players[4].name}
-          position={players[4].position}
-          player_image={players[4].player_image}
-          nation_image={players[4].nation_image}
-          club_image={players[4].club_image}
-          overall={players[4].rating_overall}
-          pace={players[4].rating_pace}
-          shooting={players[4].rating_shooting}
-          passing={players[4].rating_passing}
-          dribbling={players[4].rating_dribbling}
-          defense={players[4].rating_defense}
-          physical={players[4].rating_physical}
+          id={player5.id}
+          name={player5.name}
+          position={player5.position}
+          player_image={player5.player_image}
+          nation_image={player5.nation_image}
+          club_image={player5.club_image}
+          overall={player5.rating_overall}
+          pace={player5.rating_pace}
+          shooting={player5.rating_shooting}
+          passing={player5.rating_passing}
+          dribbling={player5.rating_dribbling}
+          defense={player5.rating_defense}
+          physical={player5.rating_physical}
         />
         <PlayerCard
-        id={players[5].id}
-        name={players[5].name}
-        position={players[5].position}
-        player_image={players[5].player_image}
-        nation_image={players[5].nation_image}
-        club_image={players[5].club_image}
-        overall={players[5].rating_overall}
-        pace={players[5].rating_pace}
-        shooting={players[5].rating_shooting}
-        passing={players[5].rating_passing}
-        dribbling={players[5].rating_dribbling}
-        defense={players[5].rating_defense}
-        physical={players[5].rating_physical}
+        id={player6.id}
+        name={player6.name}
+        position={player6.position}
+        player_image={player6.player_image}
+        nation_image={player6.nation_image}
+        club_image={player6.club_image}
+        overall={player6.rating_overall}
+        pace={player6.rating_pace}
+        shooting={player6.rating_shooting}
+        passing={player6.rating_passing}
+        dribbling={player6.rating_dribbling}
+        defense={player6.rating_defense}
+        physical={player6.rating_physical}
         />
         <PlayerCard
-        id={players[6].id}
-        name={players[6].name}
-        position={players[6].position}
-        player_image={players[6].player_image}
-        nation_image={players[6].nation_image}
-        club_image={players[6].club_image}
-        overall={players[6].rating_overall}
-        pace={players[6].rating_pace}
-        shooting={players[6].rating_shooting}
-        passing={players[6].rating_passing}
-        dribbling={players[6].rating_dribbling}
-        defense={players[6].rating_defense}
-        physical={players[6].rating_physical}
-        />
-      </div>
-
-
-      <div className="row d-flex justify-content-center">
-        <PlayerCard
-          id={players[7].id}
-          name={players[7].name}
-          position={players[7].position}
-          player_image={players[7].player_image}
-          nation_image={players[7].nation_image}
-          club_image={players[7].club_image}
-          overall={players[7].rating_overall}
-          pace={players[7].rating_pace}
-          shooting={players[7].rating_shooting}
-          passing={players[7].rating_passing}
-          dribbling={players[7].rating_dribbling}
-          defense={players[7].rating_defense}
-          physical={players[7].rating_physical}
-        />
-        <PlayerCard
-          id={players[8].id}
-          name={players[8].name}
-          position={players[8].position}
-          player_image={players[8].player_image}
-          nation_image={players[8].nation_image}
-          club_image={players[8].club_image}
-          overall={players[8].rating_overall}
-          pace={players[8].rating_pace}
-          shooting={players[8].rating_shooting}
-          passing={players[8].rating_passing}
-          dribbling={players[8].rating_dribbling}
-          defense={players[8].rating_defense}
-          physical={players[8].rating_physical}
-        />
-        <PlayerCard
-          id={players[9].id}
-          name={players[9].name}
-          position={players[9].position}
-          player_image={players[9].player_image}
-          nation_image={players[9].nation_image}
-          club_image={players[9].club_image}
-          overall={players[9].rating_overall}
-          pace={players[9].rating_pace}
-          shooting={players[9].rating_shooting}
-          passing={players[9].rating_passing}
-          dribbling={players[9].rating_dribbling}
-          defense={players[9].rating_defense}
-          physical={players[9].rating_physical}
+        id={player7.id}
+        name={player7.name}
+        position={player7.position}
+        player_image={player7.player_image}
+        nation_image={player7.nation_image}
+        club_image={player7.club_image}
+        overall={player7.rating_overall}
+        pace={player7.rating_pace}
+        shooting={player7.rating_shooting}
+        passing={player7.rating_passing}
+        dribbling={player7.rating_dribbling}
+        defense={player7.rating_defense}
+        physical={player7.rating_physical}
         />
       </div>
 
 
       <div className="row d-flex justify-content-center">
         <PlayerCard
-          id={players[10].id}
-          name={players[10].name}
-          position={players[10].position}
-          player_image={players[10].player_image}
-          nation_image={players[10].nation_image}
-          club_image={players[10].club_image}
-          overall={players[10].rating_overall}
-          pace={players[10].rating_pace}
-          shooting={players[10].rating_shooting}
-          passing={players[10].rating_passing}
-          dribbling={players[10].rating_dribbling}
-          defense={players[10].rating_defense}
-          physical={players[10].rating_physical}
+          id={player8.id}
+          name={player8.name}
+          position={player8.position}
+          player_image={player8.player_image}
+          nation_image={player8.nation_image}
+          club_image={player8.club_image}
+          overall={player8.rating_overall}
+          pace={player8.rating_pace}
+          shooting={player8.rating_shooting}
+          passing={player8.rating_passing}
+          dribbling={player8.rating_dribbling}
+          defense={player8.rating_defense}
+          physical={player8.rating_physical}
+        />
+        <PlayerCard
+          id={player9.id}
+          name={player9.name}
+          position={player9.position}
+          player_image={player9.player_image}
+          nation_image={player9.nation_image}
+          club_image={player9.club_image}
+          overall={player9.rating_overall}
+          pace={player9.rating_pace}
+          shooting={player9.rating_shooting}
+          passing={player9.rating_passing}
+          dribbling={player9.rating_dribbling}
+          defense={player9.rating_defense}
+          physical={player9.rating_physical}
+        />
+        <PlayerCard
+          id={player10.id}
+          name={player10.name}
+          position={player10.position}
+          player_image={player10.player_image}
+          nation_image={player10.nation_image}
+          club_image={player10.club_image}
+          overall={player10.rating_overall}
+          pace={player10.rating_pace}
+          shooting={player10.rating_shooting}
+          passing={player10.rating_passing}
+          dribbling={player10.rating_dribbling}
+          defense={player10.rating_defense}
+          physical={player10.rating_physical}
+        />
+      </div>
+
+
+      <div className="row d-flex justify-content-center">
+        <PlayerCard
+          id={player11.id}
+          name={player11.name}
+          position={player11.position}
+          player_image={player11.player_image}
+          nation_image={player11.nation_image}
+          club_image={player11.club_image}
+          overall={player11.rating_overall}
+          pace={player11.rating_pace}
+          shooting={player11.rating_shooting}
+          passing={player11.rating_passing}
+          dribbling={player11.rating_dribbling}
+          defense={player11.rating_defense}
+          physical={player11.rating_physical}
         />
       </div>
 
