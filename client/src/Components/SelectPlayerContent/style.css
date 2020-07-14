@@ -6,6 +6,13 @@
   position: relative;
 }
 
+.bcImg2 {
+  background-image: url("cardsBC8.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
 .fut-player-card:hover { transform: scale(1.2); }
 
 /*
