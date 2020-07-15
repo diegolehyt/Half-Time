@@ -20,7 +20,7 @@ const styles = {
   headerE: {
     marginTop: '77px'
   },
-    buttonS: {
+  buttonS: {
     // marginLeft: '20px',
     // marginTop: '0px',
     fontWeight: 'bold'
@@ -28,6 +28,11 @@ const styles = {
   listImg: {
     width: "50px",
     height: "50px"
+  },
+  scores: {
+    fontSize: "30px",
+    fontWeight: "bolder",
+    marginTop: "40px"
   }
 }
 
@@ -101,11 +106,11 @@ function GameContent() {
 
             <div className="card-body card-body-cascade text-center row">
 
-              <div className="col-3">Bar</div>
-              <div className="col-2"><strong>0</strong></div>
-              <div className="col-2">-</div>
-              <div className="col-2"><strong>0</strong></div>
-              <div className="col-3">Rel</div>
+              <div className="col-3"><img src="https://www.easports.com/fifa/ultimate-team/web-app/content/7D49A6B1-760B-4491-B10C-167FBC81D58A/2019/fut/items/images/mobile/clubs/dark/241.png"/> Bar</div>
+              <div className="col-2" style={styles.scores}><strong  >0</strong></div>
+              <div className="col-2" style={styles.scores}>-</div>
+              <div className="col-2" style={styles.scores}><strong >0</strong></div>
+              <div className="col-3"><img src="https://www.easports.com/fifa/ultimate-team/web-app/content/7D49A6B1-760B-4491-B10C-167FBC81D58A/2019/fut/items/images/mobile/clubs/dark/243.png"/>Rel</div>
 
             </div>
 
@@ -146,14 +151,26 @@ function GameContent() {
             </div>
 
             <ul class="list-group">
-              <li class="list-group-item">00' Players Warming up</li>
-              <li class="list-group-item">00' Ready to kick off</li>
-              <li class="list-group-item">01'Match started!</li>
-              <li class="list-group-item">05'Corner kick</li>
-              <li class="list-group-item">10' Faul</li>
-              <li class="list-group-item">15' Free kick</li>
-              <li class="list-group-item">20' Faul, yellow card </li>
-              <li class="list-group-item">25' switch players</li>
+              <li class="list-group-item">00'  Players Warming up</li>
+              <li class="list-group-item">00'  Ready to kick off</li>
+              <li class="list-group-item">01'  Match started!</li>
+              <li class="list-group-item">05'  Corner kick</li>
+              <li class="list-group-item">10'  Faul</li>
+              <li class="list-group-item">15'  Free kick</li>
+              <li class="list-group-item">20'  Faul, yellow card </li>
+              <li class="list-group-item">25'  switch players</li>
+              <li class="list-group-item">30'  Players Warming up</li>
+              <li class="list-group-item">35'  Ready to kick off</li>
+              <li class="list-group-item">45'  Match started!</li>
+              <li class="list-group-item">50'  Corner kick</li>
+              <li class="list-group-item">55'  Faul</li>
+              <li class="list-group-item">60'  Free kick</li>
+              <li class="list-group-item">65'  Faul, yellow card </li>
+              <li class="list-group-item">70'  switch players</li>
+              <li class="list-group-item">75'  Faul</li>
+              <li class="list-group-item">80'  Free kick</li>
+              <li class="list-group-item">85'  Faul, yellow card </li>
+              <li class="list-group-item">90'  switch players</li>
             </ul>
 
           </div>

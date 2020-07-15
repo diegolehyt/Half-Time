@@ -7,6 +7,7 @@ export const getDeveloper = () =>
         email: 'diegolehy00@gmail.com',
         username: 'diegolehyt',
         password: '111111',
+        rating: '94',
         myteam: [
           {
             id: 1,
@@ -189,6 +190,7 @@ export const getTeams = () =>
         email: 'johnblume@gmail.com',
         username: 'johnblume',
         password: '111111',
+        rating: '96',
         myteam: [
           {
             id: 12,
@@ -360,6 +362,7 @@ export const getTeams = () =>
       email: 'diegolehy00@gmail.com',
       username: 'diegolehyt',
       password: '111111',
+      rating: '94',
       myteam: [
         {
           id: 1,
@@ -532,6 +535,7 @@ export const getTeams = () =>
     email: 'ryan@gmail.com',
     username: 'ryanshock',
     password: '111111',
+    rating: '94',
     myteam: [
       {
         id: 1,
@@ -704,6 +708,7 @@ export const getTeams = () =>
   email: 'max@gmail.com',
   username: 'maxsenegal',
   password: '111111',
+  rating: '95',
   myteam: [
     {
       id: 1,
