@@ -1,3 +1,25 @@
+import axios from "axios";
+
+export default {
+  // Gets all books
+  getAllUsers: function() {
+    return axios.get("/api/users");
+  },
+  // Gets the book with the given id
+  getUser: function(id) {
+    return axios.get("/api/users/" + id);
+  },
+  // Saves a book to the database
+  saveMyTeam: function(data) {
+    return axios.put("/api/myteam", data);
+  },
+  getAllPlayers: function() {
+    return axios.get('/api/players')
+  }
+};
+
+
+
 // This code is meant to serve as a mock fetch from an API.
 export const getDeveloper = () =>
   new Promise(function (resolve) {

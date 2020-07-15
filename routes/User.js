@@ -4,6 +4,7 @@ const passportConfig = require("../passport");
 const JWT = require("jsonwebtoken");
 const User = require("../models/User");
 const Player = require("../models/Player");
+const user = require("../models/User");
 
 const signToken = (userID) => {
   return JWT.sign(
