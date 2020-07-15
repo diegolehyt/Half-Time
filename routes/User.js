@@ -71,7 +71,7 @@ userRouter.get(
 );
 
 userRouter.post(
-  "/player",
+  "/myteam",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const player = new Player(req, body);
@@ -101,26 +101,26 @@ userRouter.post(
   }
 );
 
-userRouter.get(
-  "/myteam",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    User.findById({ _id: req.user, _id })
-      .populate("myteam")
-      .exec((err, document) => {
-        if (err)
-          res.status(500).json({
-            message: { msgBody: "Error has occured", msgError: true },
-          });
-        else {
-          res.status(200).json({
-            myteam: document.myteam,
-            authenticated: true,
-          });
-        }
-      });
-  }
-);
+// userRouter.get(
+//   "/myteam",
+//   passport.authenticate("jwt", { session: false }),
+//   (req, res) => {
+//     User.findById({ _id: req.user, _id })
+//       .populate("myteam")
+//       .exec((err, document) => {
+//         if (err)
+//           res.status(500).json({
+//             message: { msgBody: "Error has occured", msgError: true },
+//           });
+//         else {
+//           res.status(200).json({
+//             myteam: document.myteam,
+//             authenticated: true,
+//           });
+//         }
+//       });
+//   }
+// );
 
 userRouter.get(
   "/authenticated",
