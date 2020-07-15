@@ -25,6 +25,9 @@ mongoose
 const userRouter = require("./routes/user");
 app.use("/user", userRouter);
 
+const playerRouter = require("./routes/players");
+app.use("/api/players", playerRouter);
+
 app.listen(port, function () {
   console.log("Server is running on port: " + port);
 });

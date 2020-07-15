@@ -37,7 +37,6 @@ function SelectPlayerContent() {
 
   const [boo, setBoo] = useState(false)
 
-
   // const team = []
   const onPlayerSelect = (player) => {
     setPlayerF(player)
@@ -99,6 +98,12 @@ function SelectPlayerContent() {
   
   // }, [playerF])
 
+  // function saveTeam () {
+  //   API.saveMyTeam(selectedPlayers)
+  //     .catch(err => console.log(err))
+  // }
+
+
   const onPlayerDelete = (player) => {
 
     // add player to database
@@ -126,7 +131,7 @@ function SelectPlayerContent() {
       <>
         <div style={styles.headerB}>
           <strong>Max Amount of Players reached! {selectedPlayers.length} / MAX! </strong>
-          <button type="submit" className="btn btn-outline-warning yellow" style={styles.buttonS}>
+          <button type="submit" className="btn btn-outline-warning yellow"  style={styles.buttonS}>
             Submit Team 
           </button>
         </div>
