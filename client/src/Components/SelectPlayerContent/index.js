@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import "./style.css";
-import players from "./players.json"
+// import players from "./players.json"
+import API2, * as API from '../../utils/API2'
 import PlayerCardB from "../PlayerCardB/index"
 
 const styles = {
@@ -32,6 +33,8 @@ const styles = {
 
 function SelectPlayerContent() {
   const [selectedPlayers, setSelectedPlayer] = useState([])
+
+  const [apiPlayers, setApiPlayers] = useState([])
 
   const [playerF, setPlayerF] = useState("")
 
@@ -89,19 +92,42 @@ function SelectPlayerContent() {
   //   // console.log(player)
   //   // console.log(team)
   // }
-
-  // useEffect(() => {
-  //   // For demonstration purposes, we mock an API call.
-  //   team.push(playerF)
-  //   console.log(team)
-  //   setSelectedPlayer(team)
+  const getAllPlayers = () => {
+    fetch('/api/players')
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(res) {
+        setApiPlayers(res)
+        console.log(res);
+      });
+    // API.getAllPlayers()
+    //   .then(res => setApiPlayers(res))
+    //   .catch(() => {
+    //     setApiPlayers([])
+    //   })
+    //   console.log(res)
+  }
+  useEffect(() => {
   
-  // }, [playerF])
+    getAllPlayers()
+    
+  
+  }, [])
 
-  // function saveTeam () {
-  //   API.saveMyTeam(selectedPlayers)
-  //     .catch(err => console.log(err))
-  // }
+  function saveTeam () {
+    
+    return fetch('http://localhost:5000/api/myteam', {
+      method : "post",
+      body : JSON.stringify(selectedPlayers),
+      headers: {'Content-Type' : 'application/json'}
+    }).then(response => {
+      if(response.status !== 401) {
+        return response.json().then(data => data)
+      }
+    })
+    
+  }
 
 
   const onPlayerDelete = (player) => {
@@ -117,7 +143,7 @@ function SelectPlayerContent() {
           <strong>My Fantasy: {selectedPlayers.length} / 11 </strong>  
         </div>
         <div className="row d-flex justify-content-center">
-          {players.map(player => (
+          {apiPlayers.map(player => (
             <PlayerCardB key={player.name} onSelect={onPlayerSelect} onDelete={onPlayerDelete} boo={boo} {...player}/> 
           ))}
        </div>
@@ -131,7 +157,7 @@ function SelectPlayerContent() {
       <>
         <div style={styles.headerB}>
           <strong>Max Amount of Players reached! {selectedPlayers.length} / MAX! </strong>
-          <button type="submit" className="btn btn-outline-warning yellow"  style={styles.buttonS}>
+          <button type="submit" className="btn btn-outline-warning yellow"  onClick={saveTeam}  style={styles.buttonS}>
             Submit Team 
           </button>
         </div>
