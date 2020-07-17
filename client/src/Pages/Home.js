@@ -9,11 +9,11 @@ import ResultContent from "../Components/ResultContent";
 function Home() {
   return (
     <Intro>
-      <Video/>
-      <AboutContent/>
+      <Video />
+      <AboutContent />
       <Mask>
         <Container>
-          <ResultContent/>
+          <ResultContent />
         </Container>
       </Mask>
     </Intro>
