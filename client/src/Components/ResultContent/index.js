@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 // import ResultBlock from "../components/ResultBlock";
 
@@ -20,7 +20,38 @@ const styles = {
   }
 }
 
+
+
+
 function ResultContent() {
+
+  const [data, setData] = useState({})
+
+  const getAllPlayers = () => {
+    fetch("https://www.thesportsdb.com/api/v1/json/1/eventspastleague.php?id=4328")
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(res) {
+        setData(res.events[1])
+        console.log(res.events[1]);
+      });
+  }
+  
+  useEffect (()=>{
+    getAllPlayers()
+    console.log(data)
+  },[])
+
+  // async function componentDidMount() {
+  //   const url = "https://www.thesportsdb.com/api/v1/json/1/eventspastleague.php?id=4328"
+  //   const response = await fetch(url)
+  //   const data = await response.json()
+  //   console.log(data.events[0])
+  // }
+
+  // componentDidMount()
+
   return (
     
     <div className=" animated fadeInRight container" style={styles.headerD}>
@@ -38,14 +69,11 @@ function ResultContent() {
 
             <div className="card-body card-body-cascade text-center">
 
-              <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, ex, recusandae.
-                Facere modi sunt, quod quibusdam dignissimos neque rem nihil ratione est placeat vel, natus non quos
-                laudantium veritatis sequi.Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit
-                laboriosam.
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, ex, recusandae.
-                Facere modi sunt, quod quibusdam dignissimos neque rem nihil ratione est placeat vel, natus non quos
-                laudantium veritatis sequi.Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit
-                laboriosam.</p>
+            <div className="card-text">
+              
+              {}
+            
+            </div>
 
               <hr/>
 
