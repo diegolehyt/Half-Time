@@ -15,7 +15,9 @@ app.use(
   })
 );
 
-const mongoURI = "mongodb://localhost:27017/half-time";
+const mongoURI = process.env.MONGO_URL
+  ? process.env.MONGO_URL
+  : "mongodb://localhost:27017/half-time";
 
 mongoose
   .connect(mongoURI, { useNewUrlParser: true })
@@ -27,6 +29,9 @@ app.use("/user", userRouter);
 
 const playerRouter = require("./routes/players");
 app.use("/api/players", playerRouter);
+
+const apiUsersRouter = require("./routes/apiusers");
+app.use("/api/apiusers", apiUsersRouter);
 
 app.listen(port, function () {
   console.log("Server is running on port: " + port);

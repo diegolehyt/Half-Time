@@ -33,4 +33,26 @@ export default {
       else return { isAuthenticated: false, user: { username: "" } };
     });
   },
+  saveteam: (team) => {
+    return fetch("/user/saveteam", {
+      method: "post",
+      body: JSON.stringify({ myteam: team }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => data);
+  },
+  register2: (user) => {
+    return fetch("/user/saveteam", {
+      method: "post",
+      body: JSON.stringify(user),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => data);
+  },
 };

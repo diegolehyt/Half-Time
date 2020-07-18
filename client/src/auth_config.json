@@ -1,0 +1,5 @@
+{
+  "domain": "half-time.us.auth0.com",
+  "clientId": "1Kgi7aIloxA7OOfbpsbmIDY49pZPsR2L",
+  "audience": "http://localhost:3000/user"
+}
