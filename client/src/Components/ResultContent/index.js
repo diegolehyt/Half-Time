@@ -1,6 +1,8 @@
-import React from "react";
 import "./style.css";
 // import ResultBlock from "../components/ResultBlock";
+import React, { useState, useRef, useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import AuthService from "../../Services/AuthService";
 
 const styles = {
   headerB: {
@@ -21,9 +23,29 @@ const styles = {
 }
 
 function ResultContent() {
+  const { isAuthenticated, user, setIsAuthenticated, setUser } = useAuth0();
+  const [bool, setBool] = useState(null)
+  // useEffect(() => {
+
+  // }, [bool]);
+
+  function handleUser(){
+    console.log('user: ', user.nickname)
+    console.log('auth: ', isAuthenticated)
+    setBool(true)
+  }
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    AuthService.register(user).then((data) => {
+      const { message } = data;
+
+    });
+  };
   return (
     
     <div className=" animated fadeInRight container" style={styles.headerD}>
+      <button onClick={handleUser}> BUTTON</button><button onClick={onSubmit}> SUBMITT</button>
       <div className="row">
         <div className="col-4">
     

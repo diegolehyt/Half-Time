@@ -10,7 +10,9 @@ const styles = {
   },
   headerC: {
     fontFamily: "'Trade Winds', cursive",
-    color: '#04375a' 
+    fontSize: '50px',
+    fontWeight: '10px',
+    shadowText: '2px 2px black'
   },
   headerD: {
     textAlign: "center",
@@ -30,7 +32,7 @@ const styles = {
     height: "50px"
   },
   scores: {
-    fontSize: "30px",
+    fontSize: "60px",
     fontWeight: "bolder",
     marginTop: "40px"
   }
@@ -54,12 +56,43 @@ const playGame = () => {
 // }
 
 function GameContent() {
+  const [bool, setBool] = useState(false)
+  const [visitBool, setVisitBool] = useState(false)
+
+  const [scoreL, setScoreL] = useState("0")
+  const [scoreV, setScoreV] = useState("0")
+
+  const [goal, setGoal] = useState(false)
 
   const [myTeamLocal, setMyteamLocal] = useState([])
   const [myTeamVisit, setMyteamVisit] = useState([])
 
   const [playerLocal, setPlayerLocal] = useState({})
   const [playerVisit, setPlayerVisit] = useState({})
+
+  // COMMENTS
+  const [comment00A, setComment00A] = useState()
+  const [comment00B, setComment00B] = useState()
+  const [comment00, setComment00] = useState()
+  const [comment05, setComment05] = useState()
+  const [comment10, setComment10] = useState()
+  const [comment15, setComment15] = useState()
+  const [comment20, setComment20] = useState()
+  const [comment25, setComment25] = useState()
+  const [comment30, setComment30] = useState("")
+  const [comment35, setComment35] = useState("")
+  const [comment40, setComment40] = useState("")
+  const [comment45, setComment45] = useState("")
+  const [comment50, setComment50] = useState("")
+  const [comment55, setComment55] = useState("")
+  const [comment60, setComment60] = useState("")
+  const [comment65, setComment65] = useState("")
+  const [comment70, setComment70] = useState("")
+  const [comment75, setComment75] = useState("")
+  const [comment80, setComment80] = useState("")
+  const [comment85, setComment85] = useState("")
+  const [comment90, setComment90] = useState("")
+
 
   // Renders and gets myteams array from the current online user database (API)
   useEffect(() => {
@@ -82,18 +115,140 @@ function GameContent() {
     })
   }, [])
 
+  useEffect(() => {
+    // setBool(false)
+    // setTimeout(function(){
+    //   console.log('HOLA useEffect 2 ------------+++++')
+    // }, 5000)
+
+  }, [setComment00A])
+
+  const addComments = () => {
+
+    setBool(true)
+    setTimeout(function(){
+      setBool(false)
+     setComment00A(<li class='list-group-item text-center'>***PLAYER FOUNDED***</li>)
+      
+    }, 3000)
+    setTimeout(function(){
+      setVisitBool(true)
+      setComment00B(<li class="list-group-item">00' Players Warming up</li>)
+    }, 6000)
+    setTimeout(function(){
+      setComment00(<li class="list-group-item">00'  Kick-Off</li>)
+    }, 9000)
+    setTimeout(function(){
+      setComment05(<li class="list-group-item">05' Faul {myTeamVisit[0].name}</li>)
+    }, 12000)
+    setTimeout(function(){
+      setComment10(<li class="list-group-item">10' Corner-kick</li>)
+    }, 15000)
+    setTimeout(function(){
+      setComment15(<li class="list-group-item">15' Miss {myTeamVisit[9].name}</li>)
+    }, 18000)
+    setTimeout(function(){
+      setComment20(<li class="list-group-item">20' Free-kick close to the net</li>)
+    }, 21000)
+    setTimeout(function(){
+      setComment25(<li class="list-group-item">25' GOAL! {myTeamLocal[5].name}</li>)
+      setScoreL("1")
+      setGoal(true)
+    }, 24000)
+    setTimeout(function(){
+      setGoal(false)
+      setComment30(<li class="list-group-item">30' Head-shot {myTeamVisit[2].name}</li>)
+    }, 27000)
+    setTimeout(function(){
+      setComment35(<li class="list-group-item">35' Corner-kick</li>)
+    }, 30000)
+    setTimeout(function(){
+      setComment40(<li class="list-group-item">45' GOAL! {myTeamVisit[0].name}</li>)
+      setScoreV("1")
+      setGoal(true)
+    }, 33000)
+    setTimeout(function(){
+      setGoal(false)
+      setComment45(<li class="list-group-item"></li>)
+    }, 36000)
+    setTimeout(function(){
+      setComment50(<li class="list-group-item"></li>)
+    }, 39000)
+    setTimeout(function(){
+      setComment55(<li class="list-group-item">00'  Players Warming up</li>)
+    }, 42000)
+    setTimeout(function(){
+      setComment60("")
+    }, 45000)
+    setTimeout(function(){
+      setComment65("")
+    }, 22000)
+    setTimeout(function(){
+      setComment70("")
+    }, 25000)
+    setTimeout(function(){
+      setComment75("")
+    }, 28000)
+    setTimeout(function(){
+      setComment80("")
+    }, 31000)
+    setTimeout(function(){
+      setComment85("")
+    }, 34000)
+    setTimeout(function(){
+      setComment90("")
+    }, 37000)
+
+  }
+
+  // ----*****---***
+  const visit = () => {
+    return (
+      <>
+        {
+          myTeamVisit.map(player => (
+            <li class="list-group-item"><img src={player.player_image} style={styles.listImg} />{player.name}</li> 
+          ))
+        }
+
+      </>
+    );
+  };
+
+  const loader = () => {
+    return (
+      <>
+        <div class="spinner-grow text-secondary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <p className="text-secondary bold animated heartBeat slower">Finding Player</p>
+
+      </>
+    );
+  };
+
   return (
     
     <div className=" animated fadeInRight container" style={styles.headerD}>
+
       <div className="row">
         <div className="col-12">
-          <button onclick={playGame()} className="btn btn-outline-warning yellow" style={styles.buttonS}>
+          <h2 className="card-header-title mb-3 amber-text">PLAY A GAME</h2>
+          {/* <button onClick={playGame} className="btn btn-outline-warning yellow" style={styles.buttonS}>
             Play a Match{" "}
+            <i className="fas fa-futbol light-green-text-2"></i>
+          </button> */}
+          <button onClick={addComments} className="btn btn-outline-warning yellow" style={styles.buttonS}>
+            PLAY{" "}
             <i className="fas fa-futbol light-green-text-2"></i>
           </button>
         </div>
 
       </div>
+
+ 
+      {bool ? loader() : ""}
+
       <div className="row" style={styles.headerE}>
         <div className="col-12">
           <div className="card card-cascade">
@@ -107,10 +262,18 @@ function GameContent() {
             <div className="card-body card-body-cascade text-center row">
 
               <div className="col-3"><img src="https://www.easports.com/fifa/ultimate-team/web-app/content/7D49A6B1-760B-4491-B10C-167FBC81D58A/2019/fut/items/images/mobile/clubs/dark/241.png"/> Bar</div>
-              <div className="col-2" style={styles.scores}><strong  >0</strong></div>
-              <div className="col-2" style={styles.scores}>-</div>
-              <div className="col-2" style={styles.scores}><strong >0</strong></div>
-              <div className="col-3"><img src="https://www.easports.com/fifa/ultimate-team/web-app/content/7D49A6B1-760B-4491-B10C-167FBC81D58A/2019/fut/items/images/mobile/clubs/dark/243.png"/>Rel</div>
+
+              
+              {visitBool 
+              ? 
+                <>
+                  <div className="col-2" style={styles.scores}><strong  >{scoreL}</strong></div>
+                  <div className="col-2" style={styles.scores}>-</div>
+                  <div className="col-2" style={styles.scores}><strong >{scoreV}</strong></div>
+                  <div className="col-3"><img src="https://www.easports.com/fifa/ultimate-team/web-app/content/7D49A6B1-760B-4491-B10C-167FBC81D58A/2019/fut/items/images/mobile/clubs/dark/243.png"/>Rel</div>
+                </>  
+              : ""}
+              
 
             </div>
 
@@ -119,7 +282,7 @@ function GameContent() {
       </div>
       <br/>
       <div className="row">
-        <div className="col-4">
+        <div className="col-3">
     
           <div className="card card-cascade">
 
@@ -130,7 +293,7 @@ function GameContent() {
 
             </div>
 
-            <ul class="list-group">
+            <ul class="list-group text-left">
               {
                 myTeamLocal.map(player => (
                   <li class="list-group-item"><img src={player.player_image} style={styles.listImg} />{player.name}</li> 
@@ -140,7 +303,15 @@ function GameContent() {
           </div>
       
         </div>
-        <div className="col-4">
+        <div className="col-6">
+          {goal 
+          ?
+            <div className="goal row">
+              <div className="col-12 text-center animated tada amber-text" style={styles.headerC}>GOOOAL!!!!</div>
+            </div>
+          : ""}
+
+
           <div className="card card-cascade">
 
             <div className="view view-cascade gradient-card-header purple darken-3 text-white">
@@ -150,47 +321,38 @@ function GameContent() {
 
             </div>
 
-            <ul class="list-group">
-              <li class="list-group-item">00'  Players Warming up</li>
-              <li class="list-group-item">00'  Ready to kick off</li>
-              <li class="list-group-item">01'  Match started!</li>
-              <li class="list-group-item">05'  Corner kick</li>
-              <li class="list-group-item">10'  Faul</li>
-              <li class="list-group-item">15'  Free kick</li>
-              <li class="list-group-item">20'  Faul, yellow card </li>
-              <li class="list-group-item">25'  switch players</li>
-              <li class="list-group-item">30'  Players Warming up</li>
-              <li class="list-group-item">35'  Ready to kick off</li>
-              <li class="list-group-item">45'  Match started!</li>
-              <li class="list-group-item">50'  Corner kick</li>
-              <li class="list-group-item">55'  Faul</li>
-              <li class="list-group-item">60'  Free kick</li>
-              <li class="list-group-item">65'  Faul, yellow card </li>
-              <li class="list-group-item">70'  switch players</li>
-              <li class="list-group-item">75'  Faul</li>
-              <li class="list-group-item">80'  Free kick</li>
-              <li class="list-group-item">85'  Faul, yellow card </li>
-              <li class="list-group-item">90'  switch players</li>
+            <ul class="list-group text-left">
+              {comment00A}
+              {comment00B}
+              {comment00}
+              {comment05}
+              {comment10}
+              {comment15}
+              {comment20}
+              {comment25}
+              {comment30}
+              {comment35}
+              {comment40}
+              {comment45}
+              {comment50}
+              {comment55}
             </ul>
 
           </div>
         </div>
-        <div className="col-4">
+        <div className="col-3">
           <div className="card card-cascade">
 
             <div className="view view-cascade gradient-card-header purple darken-3 text-white">
 
-              <h2 className="card-header-title mb-3">Real Madrid</h2>
-              <p className="card-header-subtitle mb-0">Coach: {playerVisit.fullname}</p>
+              <h2 className="card-header-title mb-3">{visitBool ? "Real Madrid" : "VISITOR TEAM"}</h2>
+              <p className="card-header-subtitle mb-0">Coach: {visitBool ? playerVisit.fullname : "VISITOR COACH"}</p>
 
             </div>
 
-            <ul class="list-group">
-              {
-                myTeamVisit.map(player => (
-                  <li class="list-group-item"><img src={player.player_image} style={styles.listImg} />{player.name}</li> 
-                ))
-              }
+            <ul class="list-group text-left">
+             {visitBool ? visit() : ""}
+     
             </ul>
             
           </div>

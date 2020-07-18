@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import "./style.css";
 // import players from "./players.json"
-import API2, * as API from '../../utils/API2'
+// import API2, * as API from '../../utils/API2'
 import PlayerCardB from "../PlayerCardB/index"
 
 const styles = {
@@ -115,18 +115,33 @@ function SelectPlayerContent() {
   
   }, [])
 
+  // function saveTeam () {
+    
+  //   return fetch('http://localhost:5000/api/myteam', {
+  //     method : "post",
+  //     body : JSON.stringify(selectedPlayers),
+  //     headers: {'Content-Type' : 'application/json'}
+  //   }).then(response => {
+  //     if(response.status !== 401) {
+  //       return response.json().then(data => data)
+  //     }
+  //   })
+    
+  // }
+
   function saveTeam () {
-    
-    return fetch('http://localhost:5000/api/myteam', {
-      method : "post",
-      body : JSON.stringify(selectedPlayers),
-      headers: {'Content-Type' : 'application/json'}
-    }).then(response => {
-      if(response.status !== 401) {
-        return response.json().then(data => data)
+    let url = '/api/myteam';
+    let data = {name: 'MESSI'};
+
+    fetch(url, {
+      method: 'PUT', // or 'PUT'
+      body: JSON.stringify(data), // data can be `string` or {object}!
+      headers:{
+        'Content-Type': 'application/json'
       }
-    })
-    
+    }).then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(response => console.log('Success:', response));
   }
 
 

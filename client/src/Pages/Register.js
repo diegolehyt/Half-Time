@@ -8,6 +8,7 @@ import Container from "../Components/Container";
 import ProjectCard from "../Components/ProjectCard";
 import LoginButton from "../Components/LoginButton";
 import LogoutButton from "../Components/LogoutButton";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const styles = {
   headerB: {
@@ -38,6 +39,7 @@ const styles = {
 };
 
 const Register = (props) => {
+  // const { isAuthenticated, user, setIsAuthenticated, setUser } = useAuth0();
   const [user, setUser] = useState({ username: "", password: "" });
   const [message, setMessage] = useState(null);
   let timerID = useRef(null);
@@ -47,6 +49,11 @@ const Register = (props) => {
       clearTimeout(timerID);
     };
   }, []);
+
+  // useEffect(() => {
+  //   console.log('user: ' + user)
+  //   console.log('auth: ' + isAuthenticated)
+  // }, [user]);
 
   const onChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -58,11 +65,6 @@ const Register = (props) => {
       const { message } = data;
       setMessage(message);
       resetForm();
-      if (!message.msgError) {
-        timerID = setTimeout(() => {
-          props.history.push("/login");
-        }, 2000);
-      }
     });
   };
 
