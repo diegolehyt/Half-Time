@@ -65,6 +65,18 @@ userRouter.post("/register", (req, res) => {
     }
   });
 });
+// req.params.id
+userRouter.get("/", (req, res) => {
+
+  User.find().then(users => res.json(users)).catch(err => res.status(500).json(err))
+
+});
+
+userRouter.get("/:id", (req, res) => {
+
+  User.findById(req.params.id).populate("myteam").then(user => res.json(user)).catch(err => res.status(500).json(err))
+
+});
 
 userRouter.post("/login", (req, res) => {
   if (req.isAuthenticated()) {

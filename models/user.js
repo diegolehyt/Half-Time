@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-// const bcrypt = require("bcrypt");
+const Player = require("./Player")
+
 const Schema = mongoose.Schema;
 
 // Create Schema
@@ -24,7 +25,7 @@ const UserSchema = new Schema({
     default: Date.now,
   },
   myteam: [
-    { type: mongoose.Schema.Types.ObjectId, ref: "MyTeam", min: 0, max: 11 },
+    { type: mongoose.Schema.Types.ObjectId, ref: Player },
   ],
 });
 
