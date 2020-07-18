@@ -18,34 +18,26 @@ const signToken = (userID) => {
 };
 
 userRouter.post("/register", (req, res) => {
-  const { fullname, username, password, email } = req.body;
-  User.findOne({ username }, (err, user) => {
+  const { name, email } = req.body;
+
+
+  const newUser = new User({ name, email });
+  newUser.save((err) => {
     if (err)
-      res
-        .status(500)
-        .json({ message: { msgBody: "Error has occured", msgError: true } });
-    if (user)
-      res.status(400).json({
-        message: { msgBody: "Username is already in use", msgError: true },
+      res.status(500).json({
+        message: { msgBody: "Error has occured", msgError: true },
       });
     else {
-      const newUser = new User({ fullname, username, password, email });
-      newUser.save((err) => {
-        if (err)
-          res.status(500).json({
-            message: { msgBody: "Error has occured", msgError: true },
-          });
-        else {
-          res.status(201).json({
-            message: {
-              msgBody: "Account successfully created",
-              msgError: false,
-            },
-          });
-        }
+      res.status(201).json({
+        message: {
+          msgBody: "Account successfully created",
+          msgError: false,
+        },
       });
     }
   });
+    
+
 });
 
 userRouter.post(
