@@ -25,12 +25,18 @@ const checkJwt = jwt({
 });
 
 // PATCH
-// userRouter.patch("/saveteam/:id", (req, res) => {
-//   User.findOneAndUpdate({ id: req.params.id }, { myteam: req.body.myteam })
-//   .then(dbBook => res.json(dbBook))
-//   .catch(err => res.status(422).json(err));
+userRouter.patch("/:id", (req, res) => {
+  // User.findOneAndUpdate({ id: req.params.id }, { myteam: req.body.myteam })
+  // .then(dbBook => res.json(dbBook))
+  // .catch(err => res.status(422).json(err));
+  User.findOneAndUpdate({ _id: req.params.id }, req.body, {
+    myteam: req.body,
+  })
+    .then((dbModel) => res.json(dbModel))
+    .catch((err) => res.status(422).json(err));
+    
 
-// });
+});
 
 userRouter.post("/saveteam", (req, res) => {
   const { name, email, sub, myteam } = req.body;

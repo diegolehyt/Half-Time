@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 import "./style.css";
 // import players from "./players.json"
 import PlayerCard from "../PlayerCard/index"
 
-import * as API from '../../utils/API'
+// import * as API from '../../utils/API'
 
 const styles = {
   headerB: {
@@ -54,6 +55,8 @@ function MyTeamContent() {
 
   // const [player, setPlayer] = useState({})
 
+  const { isAuthenticated, user, setIsAuthenticated, setUser } = useAuth0();
+  const [objId, setObjId] = useState("");
   const [myTeam, setMyteam] = useState([])
 
   const [player1, setPlayer1] = useState({})
@@ -71,28 +74,71 @@ function MyTeamContent() {
   const myTEAM = []
 
   // Renders and gets myteams array from the current online user database (API)
-  useEffect(() => {
-    // For demonstration purposes, we mock an API call.
-    API.getDeveloper().then(res => {
-      setPlayer1(res.myteam[0])
-      setPlayer2(res.myteam[1])
-      setPlayer3(res.myteam[2])
-      setPlayer4(res.myteam[3])
-      setPlayer5(res.myteam[4])
-      setPlayer6(res.myteam[5])
-      setPlayer7(res.myteam[6])
-      setPlayer8(res.myteam[7])
-      setPlayer9(res.myteam[8])
-      setPlayer10(res.myteam[9])
-      setPlayer11(res.myteam[10])
+  // useEffect(() => {
+  //   // For demonstration purposes, we mock an API call.
+  //   API.getDeveloper().then(res => {
+  //     setPlayer1(res.myteam[0])
+  //     setPlayer2(res.myteam[1])
+  //     setPlayer3(res.myteam[2])
+  //     setPlayer4(res.myteam[3])
+  //     setPlayer5(res.myteam[4])
+  //     setPlayer6(res.myteam[5])
+  //     setPlayer7(res.myteam[6])
+  //     setPlayer8(res.myteam[7])
+  //     setPlayer9(res.myteam[8])
+  //     setPlayer10(res.myteam[9])
+  //     setPlayer11(res.myteam[10])
       
-      setMyteam(res.myteam)
+  //     setMyteam(res.myteam)
 
-      console.log('Developer State:')
-      // console.log(res.myteam)
-      console.log(myTEAM)
-    })
-  }, [])
+  //     console.log('Developer State:')
+  //     // console.log(res.myteam)
+  //     console.log(myTEAM)
+  //   })
+  // }, [])
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      setTimeout(function(){
+        fetch("/api/users/")
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (res) {
+          // setApiPlayers(res);
+          
+          const onlineUser = res.find((playerX) => playerX.sub === user.sub);
+          // console.log(onlineUser._id);
+          setObjId(onlineUser._id)
+          
+          fetch(`/api/users/${onlineUser._id}`)
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (res) {
+            console.log(res)
+            setPlayer1(res.myteam[0])
+            setPlayer2(res.myteam[1])
+            setPlayer3(res.myteam[2])
+            setPlayer4(res.myteam[3])
+            setPlayer5(res.myteam[4])
+            setPlayer6(res.myteam[5])
+            setPlayer7(res.myteam[6])
+            setPlayer8(res.myteam[7])
+            setPlayer9(res.myteam[8])
+            setPlayer10(res.myteam[9])
+            setPlayer11(res.myteam[10])
+            
+            setMyteam(res.myteam)
+          });
+        });
+        
+      }, 2000)
+      
+    }
+
+
+  }, [isAuthenticated]);
 
   // const handleSubmit = function () {
   //   API.getDeveloper().then(res => {
