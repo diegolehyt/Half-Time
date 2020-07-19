@@ -122,9 +122,25 @@ function SelectPlayerContent() {
     console.log('***************USER****************', user.myteam);
     console.log('***************ID****************', objId);
 
-    AuthService.register2(user).then((data) => {
-      const { message } = data;
-    });
+   
+    const newTeam = {
+      myteam: user.myteam
+    }
+    // eslint-disable-next-line no-undef
+    fetch(`/api/users/${objId}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newTeam)
+    }).then(response => {
+      // eslint-disable-next-line no-undef
+      // if (response.ok) location.replace('/restaurants/reviews')
+      console.log(response)
+    })
+
+
+    // AuthService.register2(user).then((data) => {
+    //   const { message } = data;
+    // });
   };
   // const onSubmit = (e) => {
   //   e.preventDefault();
