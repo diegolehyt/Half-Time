@@ -40,6 +40,8 @@ function SelectPlayerContent() {
 
   const [playerF, setPlayerF] = useState("");
 
+  const [objId, setObjId] = useState("");
+
   const [boo, setBoo] = useState(false);
   const { isAuthenticated, user, setIsAuthenticated, setUser } = useAuth0();
 
@@ -89,6 +91,27 @@ function SelectPlayerContent() {
 
   //
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      setTimeout(function(){
+        fetch("/api/users/")
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (res) {
+          // setApiPlayers(res);
+          
+          const onlineUser = res.find((playerX) => playerX.sub === user.sub);
+          // console.log(onlineUser._id);
+          setObjId(onlineUser._id)
+        });
+        
+      }, 2000)
+    }
+
+
+  }, [isAuthenticated]);
+
   const onSubmit = (e) => {
     e.preventDefault();
     // AuthService.saveteam(selectedPlayers).then((data) => {
@@ -96,12 +119,26 @@ function SelectPlayerContent() {
     // });
 
     user.myteam = selectedPlayers;
-    console.log(user);
+    console.log('***************USER****************', user.myteam);
+    console.log('***************ID****************', objId);
 
     AuthService.register2(user).then((data) => {
       const { message } = data;
     });
   };
+  // const onSubmit = (e) => {
+  //   e.preventDefault();
+  //   // AuthService.saveteam(selectedPlayers).then((data) => {
+  //   //   const { message } = data;
+  //   // });
+
+  //   user.myteam = selectedPlayers;
+  //   console.log(user);
+
+  //   AuthService.register2(user).then((data) => {
+  //     const { message } = data;
+  //   });
+  // };
 
   // const onPlayerSelect = (player) => {
   //   setPlayerF(player)
