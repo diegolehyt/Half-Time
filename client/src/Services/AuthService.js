@@ -55,4 +55,15 @@ export default {
       .then((res) => res.json())
       .then((data) => data);
   },
+  register3: (user, id) => {
+    return fetch(("/api/users/saveteam/" + id), {
+      method: "patch",
+      body: JSON.stringify(user),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => data);
+  },
 };

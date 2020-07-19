@@ -25,9 +25,19 @@ const styles = {
 function ResultContent() {
   const { isAuthenticated, user, setIsAuthenticated, setUser } = useAuth0();
   const [bool, setBool] = useState(null);
-  // useEffect(() => {
 
-  // }, [bool]);
+  useEffect(() => {
+    if (isAuthenticated) {
+      setTimeout(function(){
+        AuthService.register(user).then((data) => {
+          const { message } = data;
+        });
+        
+      }, 2000)
+    }
+
+
+  }, [isAuthenticated]);
 
   function handleUser() {
     console.log("user: ", user.nickname);
@@ -35,12 +45,12 @@ function ResultContent() {
     setBool(true);
   }
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    AuthService.register(user).then((data) => {
-      const { message } = data;
-    });
-  };
+  // const onSubmit = (e) => {
+  //   e.preventDefault();
+  //   AuthService.register(user).then((data) => {
+  //     const { message } = data;
+  //   });
+  // };
   return (
     <div className=" animated fadeInRight container" style={styles.headerD}>
       <div className="row">
@@ -53,7 +63,7 @@ function ResultContent() {
               </p>
             </div>
             <button onClick={handleUser}> BUTTON</button>
-            <button onClick={onSubmit}> SUBMITT</button>
+            <button> SUBMITT</button>
             <div className="card-body card-body-cascade text-center">
               <p className="card-text">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
