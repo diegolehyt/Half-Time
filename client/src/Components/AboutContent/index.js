@@ -10,6 +10,7 @@ const styles = {
     color: '#04375a' 
   },
   headerD: {
+    fontFamily: "'Saira Semi Condensed', sans-serif",
     textAlign: "center",
     marginTop: '77px',
     marginBottom: '40px'

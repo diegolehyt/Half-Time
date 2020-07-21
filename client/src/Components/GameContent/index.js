@@ -53,6 +53,10 @@ const styles = {
     fontWeight: "bold",
     marginRight: "20px",
     color: "gold"
+  },
+  gameLogo: {
+    width: "150px",
+    height: "150px"
   }
 }
 
@@ -562,7 +566,7 @@ function GameContent() {
 
             <div className="card-body card-body-cascade text-center row">
 
-              <div className="col-3"><div>Barcelona</div><img src="https://www.easports.com/fifa/ultimate-team/web-app/content/7D49A6B1-760B-4491-B10C-167FBC81D58A/2019/fut/items/images/mobile/clubs/dark/241.png"/></div>
+              <div className="col-3"><div>{playerLocal.teamName}</div><img src={playerLocal.teamLogo} style={styles.gameLogo}/></div>
 
               
               {visitBool 
@@ -571,7 +575,7 @@ function GameContent() {
                   <div className="col-2" style={styles.scores}><strong  >{scoreL}</strong></div>
                   <div className="col-2" style={styles.scores}>-</div>
                   <div className="col-2" style={styles.scores}><strong >{scoreV}</strong></div>
-                  <div className="col-3"><div>Real Madrid</div><img src="https://www.easports.com/fifa/ultimate-team/web-app/content/7D49A6B1-760B-4491-B10C-167FBC81D58A/2019/fut/items/images/mobile/clubs/dark/243.png"/></div>
+                  <div className="col-3"><div>{playerVisit.teamName}</div><img src={playerVisit.teamLogo} style={styles.gameLogo}/></div>
                 </>  
               : ""}
               
@@ -587,9 +591,9 @@ function GameContent() {
     
           <div className="card card-cascade white-text rgba-black-light">
 
-            <div className="view view-cascade gradient-card-header rgba-black-light darken-3 text-white">
+            <div className="view view-cascade gradient-card-header rgba-purple-light darken-3 text-white">
 
-              <h2 className="card-header-title mb-3">Barcelona</h2>
+              <h2 className="card-header-title mb-3">{playerLocal.teamName}</h2>
               <p className="card-header-subtitle mb-0">Coach: {playerLocal.name}</p>
 
             </div>
@@ -652,9 +656,9 @@ function GameContent() {
         <div className="col-3">
           <div className="card card-cascade white-text rgba-black-light">
 
-            <div className="view view-cascade gradient-card-header rgba-black-light darken-3 text-white">
+            <div className="view view-cascade gradient-card-header rgba-purple-light darken-3 text-white">
 
-              <h2 className="card-header-title mb-3">{visitBool ? "Real Madrid" : "VISITOR TEAM"}</h2>
+              <h2 className="card-header-title mb-3">{visitBool ? playerVisit.teamName : "VISITOR TEAM"}</h2>
               <p className="card-header-subtitle mb-0">Coach: {visitBool ? playerVisit.name : "VISITOR COACH"}</p>
 
             </div>

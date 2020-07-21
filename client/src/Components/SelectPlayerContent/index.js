@@ -170,8 +170,9 @@ function SelectPlayerContent() {
     console.log("***************ID****************", objId);
 
     const newTeam = { // ADD teamName: teamName and teamLogo: teamLogo
-      myteam: user.myteam
-      // name: "DIEGO"
+      myteam: user.myteam,
+      teamName: teamName,
+      teamLogo: teamLogo
     };
     // eslint-disable-next-line no-undef
     fetch(`/api/users/${objId}`, {
