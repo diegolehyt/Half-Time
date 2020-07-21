@@ -29,8 +29,10 @@ userRouter.patch("/:id", (req, res) => {
   // User.findOneAndUpdate({ id: req.params.id }, { myteam: req.body.myteam })
   // .then(dbBook => res.json(dbBook))
   // .catch(err => res.status(422).json(err));
+  console.log(req.body)
   User.findOneAndUpdate({ _id: req.params.id }, req.body, {
-    myteam: req.body,
+    myteam: req.body
+    // name: req.body
   })
     .then((dbModel) => res.json(dbModel))
     .catch((err) => res.status(422).json(err));

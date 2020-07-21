@@ -6,6 +6,7 @@ import Login from "./Pages/Login";
 import MyTeam from "./Pages/MyTeam";
 import Game from "./Pages/Game";
 import SelectPlayers from "./Pages/SelectPlayers";
+import Streams from "./Pages/Streams";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Wrapper from "./Components/Wrapper";
@@ -31,6 +32,7 @@ function App() {
           <Route path="/myteam" component={MyTeam} />
           <Route path="/game" component={Game} />
           <Route path="/selectplayers" component={SelectPlayers} />
+          <Route path="/streams" component={Streams} />
         </Wrapper>
       </header>
     </Router>
