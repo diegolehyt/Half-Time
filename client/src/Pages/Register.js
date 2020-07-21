@@ -17,6 +17,9 @@ const styles = {
   headerC: {
     fontFamily: "'Trade Winds', cursive",
   },
+  headerF: {
+    fontFamily: "'Saira Semi Condensed', sans-serif"
+  },
   view: {
     position: "relative",
     overflow: "hidden",
@@ -89,7 +92,7 @@ const Register = (props) => {
               Half Time
             </h3>
             <hr className="hr-light my-4 w-75 style-two" />
-            <h4 style={styles.headerB} className="subtext-header mt-2 mb-4">
+            <h4 style={styles.headerF} className="subtext-header mt-2 mb-4">
               Best free guide of responsive web design The most comprehensive
               tutorial for the Bootstrap 4. Loved by over 500 000 users. Video
               and written versions available. Create your own, stunning website.

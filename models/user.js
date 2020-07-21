@@ -27,6 +27,14 @@ const UserSchema = new Schema({
   myteam: [
     { type: mongoose.Schema.Types.ObjectId, ref: Player },
   ],
+  teamName: {
+    type: String,
+    // required: true,
+  },
+  teamLogo: {
+    type: String,
+    // required: true,
+  },
 });
 
 // UserSchema.pre("save", function (next) {
