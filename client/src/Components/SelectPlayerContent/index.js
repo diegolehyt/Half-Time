@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
-// import players from "./players.json"
+import logos from "./logos.json"
+import logosB from "./logosB.json"
+import logosC from "./logosC.json"
+import logosD from "./logosD.json"
+import logosE from "./logosE.json"
 // import API2, * as API from '../../utils/API2'
 import PlayerCardB from "../PlayerCardB/index";
 import AuthService from "../../Services/AuthService";
 import { useAuth0 } from "@auth0/auth0-react";
+import DropDownItem from "../DropDownItem";
 
 const styles = {
   buttonS: {
@@ -28,9 +33,17 @@ const styles = {
     width: "100vh",
   },
   headerE: {
-    width: "300px",
-    height: "300px",
+    width: "200px",
+    height: "200px",
   },
+  bcLiga: {
+    width: "100px",
+    height: "100px",
+  },
+  headerF: {
+    marginTop: "100px"
+  }
+  
 };
 
 function SelectPlayerContent() {
@@ -40,10 +53,47 @@ function SelectPlayerContent() {
 
   const [playerF, setPlayerF] = useState("");
 
+  const [teamLogo, setTeamLogo] = useState();
+  const [teamName, setTeamName] = useState();
+
   const [objId, setObjId] = useState("");
 
   const [boo, setBoo] = useState(false);
   const { isAuthenticated, user, setIsAuthenticated, setUser } = useAuth0();
+
+  const [search, setSearch] = useState("");
+  const [results, setResult] = useState([]);
+  const [apiLogos, setLogos] = useState([]);
+  const [selectedLogo, setSelectedLogo] = useState([]);
+
+  const getLogos = () => {
+    // fetch("/api/logos")
+    //   .then(function (response) {
+    //     return response.json();
+    //   })
+    //   .then(function (res) {
+    //     setLogos(res);
+    //     console.log(res);
+    //   });
+    setLogos(logos)
+  };
+  useEffect(() => {
+    getLogos();
+  }, []);
+
+  const updateSearch = (event) => {
+    const data = event.target.value;
+    console.log(data);
+    setSearch(data);
+  };
+
+  useEffect(() => {
+    setResult(
+      apiPlayers.filter((player) => {
+        return player.name.toLowerCase().includes(search.toLowerCase());
+      })
+    );
+  }, [search, apiPlayers]);
 
   // const team = []
   const onPlayerSelect = (player) => {
@@ -93,23 +143,20 @@ function SelectPlayerContent() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      setTimeout(function(){
+      setTimeout(function () {
         fetch("/api/users/")
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (res) {
-          // setApiPlayers(res);
-          
-          const onlineUser = res.find((playerX) => playerX.sub === user.sub);
-          // console.log(onlineUser._id);
-          setObjId(onlineUser._id)
-        });
-        
-      }, 2000)
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (res) {
+            // setApiPlayers(res);
+
+            const onlineUser = res.find((playerX) => playerX.sub === user.sub);
+            // console.log(onlineUser._id);
+            setObjId(onlineUser._id);
+          });
+      }, 2000);
     }
-
-
   }, [isAuthenticated]);
 
   const onSubmit = (e) => {
@@ -119,24 +166,21 @@ function SelectPlayerContent() {
     // });
 
     user.myteam = selectedPlayers;
-    console.log('***************USER****************', user.myteam);
-    console.log('***************ID****************', objId);
+    console.log("***************USER****************", user.myteam);
+    console.log("***************ID****************", objId);
 
-   
-    const newTeam = {
+    const newTeam = { // ADD teamName: teamName and teamLogo: teamLogo
       myteam: user.myteam
-    }
+      // name: "DIEGO"
+    };
     // eslint-disable-next-line no-undef
     fetch(`/api/users/${objId}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newTeam)
-    }).then(response => {
-      // eslint-disable-next-line no-undef
-      // if (response.ok) location.replace('/restaurants/reviews')
-      console.log(response)
-    })
-
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newTeam),
+    }).then((response) => {
+      console.log(response);
+    });
 
     // AuthService.register2(user).then((data) => {
     //   const { message } = data;
@@ -148,25 +192,6 @@ function SelectPlayerContent() {
   //   //   const { message } = data;
   //   // });
 
-  //   user.myteam = selectedPlayers;
-  //   console.log(user);
-
-  //   AuthService.register2(user).then((data) => {
-  //     const { message } = data;
-  //   });
-  // };
-
-  // const onPlayerSelect = (player) => {
-  //   setPlayerF(player)
-  //   // team.push(player)
-  //   // setSelectedPlayer(team) // ([1, 2, 3])
-
-  //   // add player to database
-  //   // console.log(selectedPlayers)
-
-  //   // console.log(player)
-  //   // console.log(team)
-  // }
   const getAllPlayers = () => {
     fetch("/api/players")
       .then(function (response) {
@@ -187,35 +212,12 @@ function SelectPlayerContent() {
     getAllPlayers();
   }, []);
 
-  // function saveTeam () {
 
-  //   return fetch('http://localhost:5000/api/myteam', {
-  //     method : "post",
-  //     body : JSON.stringify(selectedPlayers),
-  //     headers: {'Content-Type' : 'application/json'}
-  //   }).then(response => {
-  //     if(response.status !== 401) {
-  //       return response.json().then(data => data)
-  //     }
-  //   })
-
-  // }
-
-  // function saveTeam() {
-  //   let url = "/api/myteam";
-  //   let data = { name: "MESSI" };
-
-  //   fetch(url, {
-  //     method: "PUT", // or 'PUT'
-  //     body: JSON.stringify(data), // data can be `string` or {object}!
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .catch((error) => console.error("Error:", error))
-  //     .then((response) => console.log("Success:", response));
-  // }
+  const addLogo = (logoData) => {
+    console.log(logoData);
+    setTeamLogo(logoData.logos)
+    setTeamName(logoData.name)
+  };
 
   const onPlayerDelete = (player) => {
     // add player to database
@@ -228,6 +230,7 @@ function SelectPlayerContent() {
         <div style={styles.headerB}>
           <strong>My Fantasy: {selectedPlayers.length} / 11 </strong>
         </div>
+
         <div className="row d-flex justify-content-center">
           {apiPlayers.map((player) => (
             <PlayerCardB
@@ -281,7 +284,109 @@ function SelectPlayerContent() {
           <p>{player.name}</p>
         ))}
       </div> */}
+      <div className="row" >
+        <div className="col-2">
+          <button
+            class="btn transparent text-white dropdown-toggle mr-4"
+            type="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            
+          >
+            <img style={styles.bcLiga} src="https://www.easports.com/fifa/ultimate-team/web-app/content/7D49A6B1-760B-4491-B10C-167FBC81D58A/2019/fut/items/images/mobile/leagueLogos/dark/13.png"/>
+          </button>
 
+          <div class="dropdown-menu"  style={styles.headerF}>
+            {apiLogos.map((logo) => (
+              <DropDownItem onAdd={addLogo} {...logo} />
+            ))}
+          </div>
+        </div>
+
+        <div className="col-2">
+          <button
+            class="btn transparent text-white dropdown-toggle mr-4"
+            type="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <img style={styles.bcLiga} src="https://www.easports.com/fifa/ultimate-team/web-app/content/7D49A6B1-760B-4491-B10C-167FBC81D58A/2019/fut/items/images/mobile/leagueLogos/dark/31.png"/>
+          </button>
+
+          <div class="dropdown-menu" style={styles.headerF}>
+            {logosB.map((logo) => (
+              <DropDownItem onAdd={addLogo} {...logo} />
+            ))}
+          </div>
+        </div>
+
+        <div className="col-2">
+          <button
+            class="btn transparent text-white dropdown-toggle mr-4"
+            type="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <img style={styles.bcLiga} src="https://www.easports.com/fifa/ultimate-team/web-app/content/7D49A6B1-760B-4491-B10C-167FBC81D58A/2019/fut/items/images/mobile/leagueLogos/dark/19.png"/>
+          </button>
+
+          <div class="dropdown-menu" style={styles.headerF}>
+            {logosC.map((logo) => (
+              <DropDownItem onAdd={addLogo} {...logo} />
+            ))}
+          </div>
+        </div>
+
+        <div className="col-2">
+          <button
+            class="btn transparent text-white dropdown-toggle mr-4"
+            type="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <img style={styles.bcLiga} src="https://www.easports.com/fifa/ultimate-team/web-app/content/7D49A6B1-760B-4491-B10C-167FBC81D58A/2019/fut/items/images/mobile/leagueLogos/dark/53.png"/>
+          </button>
+
+          <div class="dropdown-menu" style={styles.headerF}>
+            {logosE.map((logo) => (
+              <DropDownItem onAdd={addLogo} {...logo} />
+            ))}
+          </div>
+        </div>
+
+        <div className="col-2">
+          <button
+            class="btn transparent text-white dropdown-toggle mr-4"
+            type="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <img style={styles.bcLiga} src="https://www.easports.com/fifa/ultimate-team/web-app/content/7D49A6B1-760B-4491-B10C-167FBC81D58A/2019/fut/items/images/mobile/leagueLogos/dark/16.png"/>
+          </button>
+
+          <div class="dropdown-menu" style={styles.headerF}>
+            {logosD.map((logo) => (
+              <DropDownItem onAdd={addLogo} {...logo} />
+            ))}
+          </div>
+        </div>
+        {
+          teamLogo
+          ?
+          <div className="col-2 text-center">
+            <img src={teamLogo} style={styles.headerE}/>
+            <h3 className="white-text">{teamName}</h3>
+          </div>
+        :
+        ""
+        }
+  
+      </div>  
       {selectedPlayers.length < 11 ? addPlayers() : completePlayers()}
     </div>
   );

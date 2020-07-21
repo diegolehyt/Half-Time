@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState }from "react";
 import "./style.css";
 
 const styles = {
@@ -21,6 +21,48 @@ const styles = {
 }
 
 function AboutContent() {
+
+  const [news1, setNews1] = useState([])
+  const [news2, setNews2] = useState([])
+  const [news3, setNews3] = useState([])
+
+  const getNews1 = () => {
+    fetch("https://content.guardianapis.com/search?&section=football&order-by=newest&api-key=02647ab4-12ee-435f-a52a-a42cf3f05dc4")
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(res) {
+        setNews1(res.response.results[0])
+      });
+  }  
+
+  const getNews2 = () => {
+    fetch("https://content.guardianapis.com/search?&section=football&order-by=newest&api-key=02647ab4-12ee-435f-a52a-a42cf3f05dc4")
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(res) {
+        setNews2(res.response.results[1])
+      });
+  } 
+
+  const getNews3 = () => {
+    fetch("https://content.guardianapis.com/search?&section=football&order-by=newest&api-key=02647ab4-12ee-435f-a52a-a42cf3f05dc4")
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(res) {
+        setNews3(res.response.results[2])
+      });
+  } 
+
+  useEffect (()=>{
+    getNews1()
+    getNews2(
+    getNews3()
+    )
+  },[])
+
   return (
     
     <div id="carousel-example-2" className="carousel slide carousel-fade animated fadeInRight" style={styles.headerD} data-ride="carousel">
@@ -39,8 +81,8 @@ function AboutContent() {
             <div className="mask rgba-black-strong"></div>
           </div>
           <div className="carousel-caption">
-            <h3 className="h3-responsive">Light mask</h3>
-            <p>First text</p>
+            <h3 className="h3-responsive">{news1.webTitle}</h3>
+            <a href={news1.webUrl}>View Now</a>
           </div>
         </div>
         <div className="carousel-item">
@@ -50,8 +92,8 @@ function AboutContent() {
             <div className="mask rgba-black-strong"></div>
           </div>
           <div className="carousel-caption">
-            <h3 className="h3-responsive">Strong mask</h3>
-            <p>Secondary text</p>
+            <h3 className="h3-responsive">{news2.webTitle}</h3>
+            <a href={news2.webUrl}>View Now</a>
           </div>
         </div>
         <div className="carousel-item">
@@ -61,8 +103,8 @@ function AboutContent() {
             <div className="mask rgba-black-strong"></div>
           </div>
           <div className="carousel-caption">
-            <h3 className="h3-responsive">Slight mask</h3>
-            <p>Third text</p>
+            <h3 className="h3-responsive">{news3.webTitle}</h3>
+            <a href={news3.webUrl}>View Now</a>
           </div>
         </div>
       </div>

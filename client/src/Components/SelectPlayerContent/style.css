@@ -15,6 +15,14 @@
 }
 .fut-player-card:hover { transform: scale(1.2); }
 
+.bcLiga {  
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  background-image: url("https://www.easports.com/fifa/ultimate-team/web-app/content/7D49A6B1-760B-4491-B10C-167FBC81D58A/2019/fut/items/images/mobile/clubs/dark/241.png");
+}
+
 /*
   *** fut-player-card styles ***
 */

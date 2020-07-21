@@ -108,14 +108,9 @@ const Navbar = (props) => {
               </a>
             </li>
             <li className="nav-item">
-              <a
-                className="nav-link"
-                href="https://www.facebook.com/Diego.Lehyt"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <Link className="nav-link" to="/streams">
                 <i className="fas fa-tv light-green-text-2"></i>
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
