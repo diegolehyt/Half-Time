@@ -1,13 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
-import AuthService from "../Services/AuthService";
 import Message from "../Components/Message";
 import Intro from "../Components/Intro";
 import Video from "../Components/Video";
 import Mask from "../Components/Mask";
 import Container from "../Components/Container";
-// import ProjectCard from "../Components/ProjectCard";
-import LoginButton from "../Components/LoginButton";
-import LogoutButton from "../Components/LogoutButton";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const styles = {
@@ -53,27 +49,7 @@ const Register = (props) => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   console.log('user: ' + user)
-  //   console.log('auth: ' + isAuthenticated)
-  // }, [user]);
-
-  // const onChange = (e) => {
-  //   setUser({ ...user, [e.target.name]: e.target.value });
-  // };
-
-  // const onSubmit = (e) => {
-  //   e.preventDefault();
-  //   AuthService.register(user).then((data) => {
-  //     const { message } = data;
-  //     setMessage(message);
-  //     resetForm();
-  //   });
-  // };
-
-  // const resetForm = () => {
-  //   setUser({ username: "", password: "" });
-  // };
+  const { loginWithRedirect } = useAuth0();
 
   return (
     <Intro>
@@ -101,9 +77,9 @@ const Register = (props) => {
               className="btn btn-rounded btn-outline-white"
               data-toggle="modal"
               data-target="#revisa"
-              href
+              onClick={() => loginWithRedirect()}
             >
-              <i className="fas fa-user-edit"></i>  <LoginButton/>
+              <i className="fas fa-user-edit"></i> Login / Signup
             </a>
           </div>
           <div className="col-md-6 col-sm-12 forma animated fadeInRight">

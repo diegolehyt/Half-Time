@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import AuthService from "../../Services/AuthService";
+import AuthService from "../../Controllers/userController";
 import "./style.css";
 import Table from "react-tablegen";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
@@ -11,6 +11,10 @@ import logos from "./logos.json";
 const styles = {
   headerB: {
     color: "#04375a",
+  },
+  bcLiga: {
+    width: "75px",
+    height: "75px",
   },
   headerC: {
     fontFamily: "'Trade Winds', cursive",
@@ -72,6 +76,8 @@ function ResultContent() {
   const [tableLig1, setTableLig1] = useState([]);
   const [nextMatchLig1, setNextMatchLig1] = useState([]);
 
+
+  //function that
   const getRecentScoresEPL = () => {
     fetch(
       "https://www.thesportsdb.com/api/v1/json/1/eventspastleague.php?id=4328"
@@ -344,21 +350,20 @@ function ResultContent() {
 
           <Tabs>
             <TabList>
-              <Tab>English Premier League</Tab>
-              <Tab>La Liga</Tab>
-              <Tab>Bundesliga</Tab>
-              <Tab>Serie A</Tab>
-              <Tab>French Ligue 1</Tab>
+              <Tab><img style={styles.bcLiga} src="https://www.easports.com/fifa/ultimate-team/web-app/content/7D49A6B1-760B-4491-B10C-167FBC81D58A/2019/fut/items/images/mobile/leagueLogos/dark/13.png"/></Tab>
+              <Tab><img style={styles.bcLiga} src="https://www.easports.com/fifa/ultimate-team/web-app/content/7D49A6B1-760B-4491-B10C-167FBC81D58A/2019/fut/items/images/mobile/leagueLogos/dark/53.png"/></Tab>
+              <Tab><img style={styles.bcLiga} src="https://www.easports.com/fifa/ultimate-team/web-app/content/7D49A6B1-760B-4491-B10C-167FBC81D58A/2019/fut/items/images/mobile/leagueLogos/dark/19.png"/></Tab>
+              <Tab><img style={styles.bcLiga} src="https://www.easports.com/fifa/ultimate-team/web-app/content/7D49A6B1-760B-4491-B10C-167FBC81D58A/2019/fut/items/images/mobile/leagueLogos/dark/31.png"/></Tab>
+              <Tab><img style={styles.bcLiga} src="https://www.easports.com/fifa/ultimate-team/web-app/content/7D49A6B1-760B-4491-B10C-167FBC81D58A/2019/fut/items/images/mobile/leagueLogos/dark/16.png"/></Tab>
             </TabList>
 
             <TabPanel>
             <div className="row">
         <div className="col-5">
 
-          <div className="card card-cascade">
-            <div className="view view-cascade gradient-card-header purple-gradient">
-              <h2 className="card-header-title mb-3">English Premier League</h2>
-              <p className="card-header-subtitle mb-0">Recent Results</p>
+          <div className="card rgba-black-light text-white">
+            <div className="view view-cascade gradient-card-header rgba-purple-light">
+              <h2 className="card-header">Recent Results</h2>
             </div>
 
             <div className="card-body card-body-cascade text-center">
@@ -375,23 +380,14 @@ function ResultContent() {
                     ]}
                   />
                 </div>
-
-                <div>
-                  <div>Next Match</div>
-                </div>
-
-                <div>
-                  <div>{nextMatchEPL.strEvent}</div>
-                </div>
               </div>
             </div>
           </div>
         </div>
         <div className="col-7">
-          <div className="card card-cascade">
-            <div className="view view-cascade gradient-card-header purple-gradient">
-              <h2 className="card-header-title mb-3">English Premier League</h2>
-              <p className="card-header-subtitle mb-0">Table</p>
+          <div className="card rgba-black-light text-white">
+            <div className="view view-cascade gradient-card-header rgba-purple-light">
+              <h2 className="card-header">Table</h2>
             </div>
 
             <div className="card-body card-body-cascade text-center row">
@@ -399,7 +395,7 @@ function ResultContent() {
                 <Table
                   data={tableEPL}
                   columnHeaders={[
-                    "img",
+                    // "img",
                     "Team",
                     "Played",
                     "Win",
@@ -408,7 +404,7 @@ function ResultContent() {
                     "Points",
                   ]}
                   columnKeys={[
-                    "logos",
+                    // "logos",
                     "name",
                     "played",
                     "win",
@@ -429,10 +425,9 @@ function ResultContent() {
             <div className="row">
         <div className="col-5">
 
-          <div className="card card-cascade">
-            <div className="view view-cascade gradient-card-header purple-gradient">
-              <h2 className="card-header-title mb-3">La Liga</h2>
-              <p className="card-header-subtitle mb-0">Recent Results</p>
+          <div className="card rgba-black-light text-white">
+            <div className="view view-cascade gradient-card-header rgba-purple-light">
+              <h2 className="card-header">Recent Results</h2>
             </div>
 
             <div className="card-body card-body-cascade text-center">
@@ -449,23 +444,14 @@ function ResultContent() {
                     ]}
                   />
                 </div>
-
-                <div>
-                  <div>Next Match</div>
-                </div>
-
-                <div>
-                  <div>{nextMatchLiga.strEvent}</div>
-                </div>
               </div>
             </div>
           </div>
         </div>
         <div className="col-7">
-          <div className="card card-cascade">
-            <div className="view view-cascade gradient-card-header purple-gradient">
-              <h2 className="card-header-title mb-3">La Liga</h2>
-              <p className="card-header-subtitle mb-0">Table</p>
+          <div className="card rgba-black-light text-white">
+            <div className="view view-cascade gradient-card-header rgba-purple-light">
+              <h2 className="card-header">Table</h2>
             </div>
 
             <div className="card-body card-body-cascade text-center row">
@@ -473,7 +459,7 @@ function ResultContent() {
                 <Table
                   data={tableLiga}
                   columnHeaders={[
-                    "img",
+                    // "img",
                     "Team",
                     "Played",
                     "Win",
@@ -482,7 +468,7 @@ function ResultContent() {
                     "Points",
                   ]}
                   columnKeys={[
-                    "logos",
+                    // "logos",
                     "name",
                     "played",
                     "win",
@@ -503,10 +489,9 @@ function ResultContent() {
             <div className="row">
         <div className="col-5">
 
-          <div className="card card-cascade">
-            <div className="view view-cascade gradient-card-header purple-gradient">
-              <h2 className="card-header-title mb-3">Bundesliga</h2>
-              <p className="card-header-subtitle mb-0">Recent Results</p>
+        <div className="card rgba-black-light text-white">
+            <div className="view view-cascade gradient-card-header rgba-purple-light">
+              <h2 className="card-header">Recent Results</h2>
             </div>
 
             <div className="card-body card-body-cascade text-center">
@@ -523,23 +508,14 @@ function ResultContent() {
                     ]}
                   />
                 </div>
-
-                <div>
-                  <div>Next Match</div>
-                </div>
-
-                <div>
-                  <div>{nextMatchBun.strEvent}</div>
-                </div>
               </div>
             </div>
           </div>
         </div>
         <div className="col-7">
-          <div className="card card-cascade">
-            <div className="view view-cascade gradient-card-header purple-gradient">
-              <h2 className="card-header-title mb-3">Bundesliga</h2>
-              <p className="card-header-subtitle mb-0">Table</p>
+        <div className="card rgba-black-light text-white">
+            <div className="view view-cascade gradient-card-header rgba-purple-light">
+              <h2 className="card-header">Table</h2>
             </div>
 
             <div className="card-body card-body-cascade text-center row">
@@ -547,7 +523,7 @@ function ResultContent() {
                 <Table
                   data={tableBun}
                   columnHeaders={[
-                    "img",
+                    // "img",
                     "Team",
                     "Played",
                     "Win",
@@ -556,7 +532,7 @@ function ResultContent() {
                     "Points",
                   ]}
                   columnKeys={[
-                    "logos",
+                    // "logos",
                     "name",
                     "played",
                     "win",
@@ -577,10 +553,9 @@ function ResultContent() {
             <div className="row">
         <div className="col-5">
 
-          <div className="card card-cascade">
-            <div className="view view-cascade gradient-card-header purple-gradient">
-              <h2 className="card-header-title mb-3">Serie A</h2>
-              <p className="card-header-subtitle mb-0">Recent Results</p>
+        <div className="card rgba-black-light text-white">
+            <div className="view view-cascade gradient-card-header rgba-purple-light">
+              <h2 className="card-header">Recent Results</h2>
             </div>
 
             <div className="card-body card-body-cascade text-center">
@@ -597,23 +572,14 @@ function ResultContent() {
                     ]}
                   />
                 </div>
-
-                <div>
-                  <div>Next Match</div>
-                </div>
-
-                <div>
-                  <div>{nextMatchA.strEvent}</div>
-                </div>
               </div>
             </div>
           </div>
         </div>
         <div className="col-7">
-          <div className="card card-cascade">
-            <div className="view view-cascade gradient-card-header purple-gradient">
-              <h2 className="card-header-title mb-3">Serie A</h2>
-              <p className="card-header-subtitle mb-0">Table</p>
+        <div className="card rgba-black-light text-white">
+            <div className="view view-cascade gradient-card-header rgba-purple-light">
+              <h2 className="card-header">Table</h2>
             </div>
 
             <div className="card-body card-body-cascade text-center row">
@@ -621,7 +587,7 @@ function ResultContent() {
                 <Table
                   data={tableA}
                   columnHeaders={[
-                    "img",
+                    // "img",
                     "Team",
                     "Played",
                     "Win",
@@ -630,7 +596,7 @@ function ResultContent() {
                     "Points",
                   ]}
                   columnKeys={[
-                    "logos",
+                    // "logos",
                     "name",
                     "played",
                     "win",
@@ -651,10 +617,9 @@ function ResultContent() {
             <div className="row">
         <div className="col-5">
 
-          <div className="card card-cascade">
-            <div className="view view-cascade gradient-card-header purple-gradient">
-              <h2 className="card-header-title mb-3">French Ligue 1</h2>
-              <p className="card-header-subtitle mb-0">Recent Results</p>
+        <div className="card rgba-black-light text-white">
+            <div className="view view-cascade gradient-card-header rgba-purple-light">
+              <h2 className="card-header">Recent Results</h2>
             </div>
 
             <div className="card-body card-body-cascade text-center">
@@ -671,23 +636,14 @@ function ResultContent() {
                     ]}
                   />
                 </div>
-
-                <div>
-                  <div>Next Match</div>
-                </div>
-
-                <div>
-                  <div>{nextMatchA.strEvent}</div>
-                </div>
               </div>
             </div>
           </div>
         </div>
         <div className="col-7">
-          <div className="card card-cascade">
-            <div className="view view-cascade gradient-card-header purple-gradient">
-              <h2 className="card-header-title mb-3">French Ligue 1</h2>
-              <p className="card-header-subtitle mb-0">Table</p>
+        <div className="card rgba-black-light text-white">
+            <div className="view view-cascade gradient-card-header rgba-purple-light">
+              <h2 className="card-header">Table</h2>
             </div>
 
             <div className="card-body card-body-cascade text-center row">
@@ -695,7 +651,7 @@ function ResultContent() {
                 <Table
                   data={tableLig1}
                   columnHeaders={[
-                    "img",
+                    // "img",
                     "Team",
                     "Played",
                     "Win",
@@ -704,7 +660,7 @@ function ResultContent() {
                     "Points",
                   ]}
                   columnKeys={[
-                    "logos",
+                    // "logos",
                     "name",
                     "played",
                     "win",

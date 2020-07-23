@@ -344,3 +344,13 @@
   transition: all .4s ease-in-out;
   transform: scale(0.8);
 }
+
+/*Sticky score*/
+.score {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: yellow;
+  padding: 50px;
+  font-size: 20px;
+}
