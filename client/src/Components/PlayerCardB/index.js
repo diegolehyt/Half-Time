@@ -4,7 +4,7 @@ import React, {useState} from "react";
 
 const styles = {
   bcIMG: {
-    backgroundImage: 'url(card5.png)'
+    backgroundImage: 'url(images/card13.png)'
   }
 }
 

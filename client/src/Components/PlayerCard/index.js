@@ -1,14 +1,23 @@
 import React from "react";
 
+const styles = {
+  bcIMG: {
+    backgroundImage: 'url(images/card13.png)'
+  },
+  overA: {
+    fontWeight: "bolder"
+  }
+}
+
 
 function PlayerCard(props) {
     return (
-        <div className="fut-player-card">
+        <div className="fut-player-card" style={styles.bcIMG}>
         
           <div className="player-card-top">
             <div className="player-master-info">
-            <div className="player-rating"><span>{props.overall}</span></div>
-            <div className="player-position"><span>{props.position}</span></div>
+            <div className="player-rating"><span style={styles.overA}>{props.overall}</span></div>
+            <div className="player-position"><span style={styles.overA}>{props.position}</span></div>
               <div className="player-nation"><img src={props.nation_image}/></div>
               <div className="player-club"><img src={props.club_image}/></div>
             </div>

@@ -310,4 +310,13 @@
   border: 0;
 }
 
+/*gradient*/
+.gradientB {
+  color: white;
+  background: linear-gradient(45deg, rgba(255, 230, 0, 0.699), rgba(219, 7, 238, 0.877) 100%);
+}
+.gradientA {
+  color: white;
+  background: linear-gradient(45deg, rgba(219, 7, 238, 0.877), rgba(255, 230, 0, 0.699) 100%);
+}
 

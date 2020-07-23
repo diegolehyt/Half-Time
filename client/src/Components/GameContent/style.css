@@ -8,3 +8,12 @@
   height: 100px;
   z-index: 50;
 }
+
+.bcTrans {
+  background-color: rgba(19, 4, 32, 0.664);
+}
+
+.glow {
+  text-shadow: 0 0 0.2em #F87, 0 0 0.2em #F87
+}
+

@@ -24,6 +24,23 @@ const checkJwt = jwt({
   algorithms: ["RS256"],
 });
 
+// PATCH
+userRouter.patch("/:id", (req, res) => {
+  // User.findOneAndUpdate({ id: req.params.id }, { myteam: req.body.myteam })
+  // .then(dbBook => res.json(dbBook))
+  // .catch(err => res.status(422).json(err));
+  console.log(req.body)
+  User.findOneAndUpdate({ _id: req.params.id }, req.body, {
+    myteam: req.body,
+    teamName: req.body,
+    teamLogo: req.body
+  })
+    .then((dbModel) => res.json(dbModel))
+    .catch((err) => res.status(422).json(err));
+    
+
+});
+
 userRouter.post("/saveteam", (req, res) => {
   const { name, email, sub, myteam } = req.body;
 
@@ -46,24 +63,66 @@ userRouter.post("/saveteam", (req, res) => {
   console.log("hello");
 });
 
+// userRouter.post("/register", (req, res) => {
+//   const { name, email, sub, myteam } = req.body;
+
+//   const newUser = new User({ name, email, sub, myteam });
+//   newUser.save((err) => {
+//     if (err)
+//       res.status(500).json({
+//         message: { msgBody: "Error has occured", msgError: true },
+//       });
+//     else {
+//       res.status(201).json({
+//         message: {
+//           msgBody: "Account successfully created",
+//           msgError: false,
+//         },
+//       });
+//     }
+//   });
+// });
 userRouter.post("/register", (req, res) => {
   const { name, email, sub, myteam } = req.body;
-
-  const newUser = new User({ name, email, sub, myteam });
-  newUser.save((err) => {
+  User.findOne({ name }, (err, user) => {
     if (err)
-      res.status(500).json({
-        message: { msgBody: "Error has occured", msgError: true },
+      res
+        .status(500)
+        .json({ message: { msgBody: "Error has occured", msgError: true } });
+    if (user)
+      res.status(400).json({
+        message: { msgBody: "Username is already in use", msgError: true },
       });
     else {
-      res.status(201).json({
-        message: {
-          msgBody: "Account successfully created",
-          msgError: false,
-        },
+      const newUser = new User({ name, email, sub, myteam });
+      newUser.save((err) => {
+        if (err)
+          res.status(500).json({
+            message: { msgBody: "Error has occured", msgError: true },
+          });
+        else {
+          res.status(201).json({
+            message: {
+              msgBody: "Account successfully created",
+              msgError: false,
+            },
+          });
+        }
       });
     }
   });
+});
+// req.params.id
+userRouter.get("/", (req, res) => {
+
+  User.find().then(users => res.json(users)).catch(err => res.status(500).json(err))
+
+});
+
+userRouter.get("/:id", (req, res) => {
+
+  User.findById(req.params.id).populate("myteam").then(user => res.json(user)).catch(err => res.status(500).json(err))
+
 });
 
 userRouter.post("/login", (req, res) => {

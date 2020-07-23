@@ -24,14 +24,14 @@ mongoose
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log(err));
 
-const userRouter = require("./routes/user");
-app.use("/user", userRouter);
+const userRouter = require("./routes/User");
+app.use("/api/users", userRouter);
 
 const playerRouter = require("./routes/players");
 app.use("/api/players", playerRouter);
 
-const apiUsersRouter = require("./routes/apiusers");
-app.use("/api/apiusers", apiUsersRouter);
+// const apiUsersRouter = require("./routes/users");
+// app.use("/api/users", apiUsersRouter);
 
 app.listen(port, function () {
   console.log("Server is running on port: " + port);
