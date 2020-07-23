@@ -84,7 +84,7 @@ function InfoContent() {
 
       
               <div className="col-12">
-                <p>CLICK FOR INFO ABOUT A TEAMS</p>
+                <p style={styles.gameTime}>CLICK FOR INFO ABOUT A TEAMS</p>
                 {logos.map((logo) => (
                   <LogoTeam onAdd={addLogo} {...logo} />
                 ))}
@@ -180,7 +180,7 @@ function InfoContent() {
                           <img className="img-fluid" src={team.strTeamFanart1} alt="Avatar" style={styles.img1}/>
                         </div>
                         <div className="flip-card-back">
-                          <h1>Stadium</h1>
+                          <h1 className="amber-text">Stadium</h1>
                           <p>Name: {team.strStadium}</p>
                           <p>Location: {team.strStadiumLocation}</p>
                           <p>Capacity: {team.intStadiumCapacity}</p>
@@ -194,7 +194,7 @@ function InfoContent() {
                           <img className="img-fluid" src={team.strTeamFanart2} alt="Avatar" style={styles.img1}/>
                         </div>
                         <div className="flip-card-back">
-                          <h1>Current Events</h1>
+                          <h1 className="amber-text">Current Events</h1>
                           <p>{team.strLeague}</p>
                           <p>{team.strLeague2}</p>
                           <p>{team.strLeague3}</p>
@@ -208,7 +208,7 @@ function InfoContent() {
                           <img className="img-fluid" src={team.strTeamFanart3} alt="Avatar" style={styles.img1}/>
                         </div>
                         <div className="flip-card-back">
-                          <h1>Social</h1>
+                          <h1 className="amber-text">Social</h1>
                           <a href={"https://" + team.strFacebook} className="btn btn-sm btn-fb primary-color-dark wave-effect" target="_blank" rel='noopener noreferrer'><i className="fab fa-facebook-f pr-1"></i>Facebook</a>
                           <a href={"https://" + team.strTwitter} className="btn btn-sm btn-fb blue wave-effect" target="_blank" rel='noopener noreferrer'><i className="fab fa-twitter pr-1"></i>Twitter</a>
                           <a href={"https://" + team.strInstagram} className="btn btn-sm btn-fb purple wave-effect" target="_blank" rel='noopener noreferrer'><i className="fab fa-instagram pr-1"></i>Instagram</a>
@@ -222,7 +222,7 @@ function InfoContent() {
                           <img className="img-fluid" src={team.strTeamFanart4} alt="Avatar" style={styles.img1}/>
                         </div>
                         <div className="flip-card-back">
-                          <h1>{team.strTeam}</h1>
+                          <h1 className="amber-text">{team.strTeam}</h1>
                           <a href={"https://" + team.strWebsite} className="btn btn-sm btn-fb special-color-dark wave-effect" target="_blank" rel='noopener noreferrer'><i className="fas fa-window-maximize pr-1"></i>Website</a>
                         </div>
                       </div>

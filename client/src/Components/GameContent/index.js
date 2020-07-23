@@ -253,15 +253,15 @@ function GameContent() {
       setVisitBool(true)
       setBool(false)
       if (result > 0) {
-        setComment00A(<li class='list-group-item text-center rgba-black-light'>***PLAYER FOUNDED***</li>)
+        setComment00A(<li class='list-group-item text-center rgba-black-light'>PLAYER FOUND</li>)
       }
       else if (result === 0) {
 
-        setComment00A(<li class='list-group-item text-center rgba-black-light'>***PLAYER FOUNDED***</li>)
+        setComment00A(<li class='list-group-item text-center rgba-black-light'>PLAYER FOUND</li>)
       }
       else {
 
-        setComment00A(<li class='list-group-item text-center rgba-black-light'>***PLAYER FOUNDED***</li>)
+        setComment00A(<li class='list-group-item text-center rgba-black-light'>PLAYER FOUND</li>)
       }
     }, 3000)
     setTimeout(function () {
@@ -333,12 +333,12 @@ function GameContent() {
     }, 9000)
     setTimeout(function () {
       if (result > 0) {
-        setComment25(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>25'</span><img src="images/goal.png" style={styles.gameImg} />{myTeamLocal[6].name} GOAL!</li>)
+        setComment25(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>25'</span><img src="images/goal.png" style={styles.gameImg} /><span style={styles.gameTime}>GOAL!</span>{myTeamLocal[6].name} {" "}<img src={playerLocal.teamLogo} style={styles.gameImg} /></li>)
         setScoreL("1")
         setGoal(true)
       }
       else if (result === 0) {
-        setComment25(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>25'</span><img src="images/goal.png" style={styles.gameImg} />{myTeamLocal[6].name} GOAL!</li>)
+        setComment25(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>25'</span><img src="images/goal.png" style={styles.gameImg} /><span style={styles.gameTime}>GOAL!</span>{myTeamLocal[6].name} {" "}<img src={playerLocal.teamLogo} style={styles.gameImg} /></li>)
         setScoreL("1")
         setGoal(true)
       }
@@ -372,17 +372,17 @@ function GameContent() {
     }, 12000)
     setTimeout(function () {
       if (result > 0) {
-        setComment40(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>40'</span><img src="images/goal.png" style={styles.gameImg} />GOAL! {myTeamVisit[2].name}</li>)
+        setComment40(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>40'</span><img src="images/goal.png" style={styles.gameImg} /><span style={styles.gameTime}>GOAL!</span> {myTeamVisit[2].name}{" "}<img src={playerVisit.teamLogo} style={styles.gameImg} /></li>)
         setScoreV("1")
         setGoal(true)
       }
       else if (result === 0) {
-        setComment40(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>40'</span><img src="images/goal.png" style={styles.gameImg} />GOAL! {myTeamVisit[2].name}</li>)
+        setComment40(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>40'</span><img src="images/goal.png" style={styles.gameImg} /><span style={styles.gameTime}>GOAL!</span>{myTeamVisit[2].name}{" "}<img src={playerVisit.teamLogo} style={styles.gameImg} /></li>)
         setScoreV("1")
         setGoal(true)
       }
       else {
-        setComment40(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>40'</span><img src="images/goal.png" style={styles.gameImg} />GOAL! {myTeamVisit[2].name}</li>)
+        setComment40(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>40'</span><img src="images/goal.png" style={styles.gameImg} /><span style={styles.gameTime}>GOAL!</span> {myTeamVisit[2].name}{" "}<img src={playerVisit.teamLogo} style={styles.gameImg} /></li>)
         setScoreV("1")
         setGoal(true)
       }
@@ -436,7 +436,7 @@ function GameContent() {
     }, 17000)
     setTimeout(function () {
       if (result > 0) {
-        setComment65(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>60'</span> <img src="images/goal.png" style={styles.gameImg} />GOAL by {myTeamLocal[4].name}</li>)
+        setComment65(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>60'</span> <img src="images/goal.png" style={styles.gameImg} /><span style={styles.gameTime}>GOAL!</span> by {myTeamLocal[4].name}{" "}<img src={playerLocal.teamLogo} style={styles.gameImg} /></li>)
         setScoreL("2")
         setGoal(true)
       }

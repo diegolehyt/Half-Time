@@ -13,7 +13,7 @@ import Wrapper from "./Components/Wrapper";
 
 const styles = {
   headerB: {
-    fontFamily: "'Architects Daughter', cursive" 
+    fontFamily: "'Saira Semi Condensed', sans-serif" 
   },
   headerC: {
     fontFamily: "'Trade Winds', cursive" 
