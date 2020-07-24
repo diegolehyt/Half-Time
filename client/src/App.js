@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "./Components/Navbar";
 import Home from "./Pages/Home";
 import Register from "./Pages/Register";
-import Login from "./Pages/Login";
+import Info from "./Pages/Info";
 import MyTeam from "./Pages/MyTeam";
 import Game from "./Pages/Game";
 import SelectPlayers from "./Pages/SelectPlayers";
@@ -13,7 +13,7 @@ import Wrapper from "./Components/Wrapper";
 
 const styles = {
   headerB: {
-    fontFamily: "'Architects Daughter', cursive" 
+    fontFamily: "'Saira Semi Condensed', sans-serif" 
   },
   headerC: {
     fontFamily: "'Trade Winds', cursive" 
@@ -27,7 +27,7 @@ function App() {
         <Navbar />
         <Wrapper basename="/">
           <Route exact path="/" component={Home} />
-          <Route path="/login" component={Login} />
+          <Route path="/info" component={Info} />
           <Route path="/register" component={Register} />
           <Route path="/myteam" component={MyTeam} />
           <Route path="/game" component={Game} />

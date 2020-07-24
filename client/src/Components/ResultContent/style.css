@@ -61,3 +61,7 @@
 .react-tabs__tab-panel--selected {
   display: block;
 }
+
+th, td {
+  color: white;
+}

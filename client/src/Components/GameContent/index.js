@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useAuth0 } from "@auth0/auth0-react";
 import "./style.css";
-// import ResultBlock from "../components/ResultBlock";
-import * as API from '../../utils/API'
 
 
 const styles = {
@@ -44,6 +42,17 @@ const styles = {
     fontWeight: "bolder",
     marginTop: "40px"
   },
+  scores2: {
+    fontSize: "50px",
+    fontWeight: "bolder",
+    marginTop: "10px",
+    marginBottom: "0px"
+  },
+  scores3: {
+    fontSize: "40px",
+    fontWeight: "bolder",
+    marginTop: "-10px"
+  },
   gameImg: {
     width: "20px",
     height: "20px",
@@ -84,6 +93,7 @@ function GameContent() {
 
   const [bool, setBool] = useState(false)
   const [visitBool, setVisitBool] = useState(false)
+  const [live, setLive] = useState(true)
 
   const [scoreL, setScoreL] = useState("0")
   const [scoreV, setScoreV] = useState("0")
@@ -170,10 +180,13 @@ function GameContent() {
           return response.json();
         })
         .then(function (res) {
-          let random = Math.floor(Math.random() * res.length);
+          let resB = res.filter(
+            (playerZ) => playerZ.name !== playerLocal.name
+          );
+          let random = Math.floor(Math.random() * resB.length);
           console.log(random)
           
-          fetch(`/api/users/${res[random]._id}`)
+          fetch(`/api/users/${resB[random]._id}`)
           .then(function (response) {
             return response.json();
           })
@@ -236,22 +249,22 @@ function GameContent() {
 
     // Match Begins
     setBool(true)
-    setTimeout(function(){
+    setTimeout(function () {
       setVisitBool(true)
       setBool(false)
       if (result > 0) {
-        setComment00A(<li class='list-group-item text-center rgba-black-light'>***PLAYER FOUNDED GANAS***</li>)
+        setComment00A(<li class='list-group-item text-center rgba-black-light'>PLAYER FOUND</li>)
       }
       else if (result === 0) {
 
-        setComment00A(<li class='list-group-item text-center rgba-black-light'>***PLAYER FOUNDED EMPATE***</li>)
+        setComment00A(<li class='list-group-item text-center rgba-black-light'>PLAYER FOUND</li>)
       }
       else {
- 
-        setComment00A(<li class='list-group-item text-center rgba-black-light'>***PLAYER FOUNDED PIERDES***</li>)
+
+        setComment00A(<li class='list-group-item text-center rgba-black-light'>PLAYER FOUND</li>)
       }
     }, 3000)
-    setTimeout(function(){
+    setTimeout(function () {
       if (result > 0) {
         setComment00B(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>00'</span> Players Warming up</li>)
       }
@@ -262,250 +275,249 @@ function GameContent() {
         setComment00B(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>00'</span> Players Warming up</li>)
       }
     }, 4000)
-    setTimeout(function(){
+    setTimeout(function () {
       if (result > 0) {
-        setComment00(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>00'</span><img src="images/ref.png" style={styles.gameImg}/>Kick-Off</li>)
+        setComment00(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>00'</span><img src="images/ref.png" style={styles.gameImg} />Kick-Off</li>)
       }
       else if (result === 0) {
-        setComment00(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>00'</span><img src="images/ref.png" style={styles.gameImg}/>Kick-Off</li>)
+        setComment00(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>00'</span><img src="images/ref.png" style={styles.gameImg} />Kick-Off</li>)
       }
       else {
-        setComment00(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>00'</span><img src="images/ref.png" style={styles.gameImg}/>Kick-Off</li>)
+        setComment00(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>00'</span><img src="images/ref.png" style={styles.gameImg} />Kick-Off</li>)
       }
     }, 5000)
-    setTimeout(function(){
-    
+    setTimeout(function () {
+
       if (result > 0) {
-        setComment05(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>05'</span><img src="images/yellow.png" style={styles.gameImg}/>Faul {myTeamLocal[2].name} Yellow Card</li>)
+        setComment05(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>05'</span><img src="images/yellow.png" style={styles.gameImg} />Foul {myTeamLocal[2].name} Yellow Card</li>)
       }
       else if (result === 0) {
-        setComment05(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>05'</span><img src="images/yellow.png" style={styles.gameImg}/>Faul {myTeamLocal[2].name} Yellow Card</li>)
+        setComment05(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>05'</span><img src="images/yellow.png" style={styles.gameImg} />Foul {myTeamLocal[2].name} Yellow Card</li>)
       }
       else {
-        setComment05(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>05'</span><img src="images/yellow.png" style={styles.gameImg}/>Faul {myTeamLocal[2].name} Yellow Card</li>)
+        setComment05(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>05'</span><img src="images/corner.png" style={styles.gameImg} /> Corner-Kick</li>)
       }
     }, 6000)
-    setTimeout(function(){
+    setTimeout(function () {
       if (result > 0) {
-        setComment10(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>10'</span>Corner-kick</li>)
+        setComment10(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>10'</span><img src="images/corner.png" style={styles.gameImg} /> Corner-Kick</li>)
       }
       else if (result === 0) {
-        setComment10(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>10'</span> Corner-kick</li>)
+        setComment10(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>10'</span><img src="images/corner.png" style={styles.gameImg} /> Corner-Kick</li>)
       }
       else {
-        setComment10(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>10'</span> Corner-kick</li>)
+        setComment10(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>10'</span><img src="images/ref.png" style={styles.gameImg} /> Offside </li>)
       }
     }, 7000)
-    setTimeout(function(){
+    setTimeout(function () {
       if (result > 0) {
-        setComment15(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>15'</span> Miss {myTeamVisit[9].name}</li>)
+        setComment15(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>15'</span> Attempt missed {myTeamVisit[5].name}</li>)
       }
       else if (result === 0) {
-        setComment15(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>15'</span> Miss {myTeamVisit[9].name}</li>)
+        setComment15(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>15'</span>Attempt missed {myTeamVisit[5].name}</li>)
       }
       else {
-        setComment15(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>15'</span> Miss {myTeamVisit[9].name}</li>)
+        setComment15(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>15'</span> Attempt missed {myTeamVisit[5].name}</li>)
       }
     }, 8000)
-    setTimeout(function(){
+    setTimeout(function () {
       if (result > 0) {
-        setComment20(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>20'</span>Free-kick close to the net {myTeamVisit[9].name}</li>)
+        setComment20(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>20'</span>Free-kick close to the net {myTeamVisit[7].name}</li>)
       }
       else if (result === 0) {
-        setComment20(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>20'</span>Free-kick close to the net {myTeamVisit[9].name}</li>)
+        setComment20(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>20'</span>Free-kick close to the net {myTeamVisit[7].name}</li>)
       }
       else {
-        setComment20(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>20'</span> Free-kick close to the net {myTeamVisit[9].name}</li>)
+        setComment20(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>20'</span> Header by {myTeamVisit[7].name}</li>)
       }
     }, 9000)
-    setTimeout(function(){
+    setTimeout(function () {
       if (result > 0) {
-        setComment25(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>25'</span><img src="images/goal.png" style={styles.gameImg}/>{myTeamLocal[5].name}GOAL!</li>)
+        setComment25(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>25'</span><img src="images/goal.png" style={styles.gameImg} /><span style={styles.gameTime}>GOAL!</span>{myTeamLocal[6].name} {" "}<img src={playerLocal.teamLogo} style={styles.gameImg} /></li>)
         setScoreL("1")
         setGoal(true)
       }
       else if (result === 0) {
-        setComment25(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>25'</span><img src="images/goal.png" style={styles.gameImg}/>{myTeamLocal[5].name}GOAL!</li>)
+        setComment25(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>25'</span><img src="images/goal.png" style={styles.gameImg} /><span style={styles.gameTime}>GOAL!</span>{myTeamLocal[6].name} {" "}<img src={playerLocal.teamLogo} style={styles.gameImg} /></li>)
         setScoreL("1")
         setGoal(true)
       }
       else {
-        setComment25(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>25'</span>Long-shot {myTeamVisit[9].name}</li>)
+        setComment25(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>25'</span>Attempt missed {myTeamVisit[6].name}</li>)
       }
     }, 10000)
-    setTimeout(function(){
+    setTimeout(function () {
       if (result > 0) {
         setGoal(false)
-        setComment30(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>30'</span>Head-shot {myTeamVisit[2].name}</li>)
+        setComment30(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>30'</span>Head-shot {myTeamVisit[9].name}</li>)
       }
       else if (result === 0) {
         setGoal(false)
-        setComment30(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>30'</span> Head-shot {myTeamVisit[2].name}</li>)
+        setComment30(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>30'</span> Miss {myTeamVisit[9].name}</li>)
       }
       else {
-        setComment30(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>30'</span> Head-shot {myTeamVisit[2].name}</li>)
+        setComment30(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>30'</span> Miss {myTeamVisit[9].name}</li>)
       }
     }, 11000)
-    setTimeout(function(){
+    setTimeout(function () {
       if (result > 0) {
-        setComment35(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>35'</span> Corner-kick</li>)
+        setComment35(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>35'</span><img src="images/corner.png" style={styles.gameImg} />Corner-kick</li>)
       }
       else if (result === 0) {
-        setComment35(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>35'</span> Corner-kick</li>)
+        setComment35(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>35'</span> <img src="images/corner.png" style={styles.gameImg} />Corner-kick</li>)
       }
       else {
-        setComment35(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>35'</span> Corner-kick</li>)
+        setComment35(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>35'</span> Attempt Missed by {myTeamLocal[1].name} </li>)
       }
     }, 12000)
-    setTimeout(function(){
+    setTimeout(function () {
       if (result > 0) {
-        setComment40(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>40'</span>GOAL! {myTeamVisit[0].name}</li>)
+        setComment40(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>40'</span><img src="images/goal.png" style={styles.gameImg} /><span style={styles.gameTime}>GOAL!</span> {myTeamVisit[2].name}{" "}<img src={playerVisit.teamLogo} style={styles.gameImg} /></li>)
         setScoreV("1")
         setGoal(true)
       }
       else if (result === 0) {
-        setComment40(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>40'</span>GOAL! {myTeamVisit[0].name}</li>)
+        setComment40(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>40'</span><img src="images/goal.png" style={styles.gameImg} /><span style={styles.gameTime}>GOAL!</span>{myTeamVisit[2].name}{" "}<img src={playerVisit.teamLogo} style={styles.gameImg} /></li>)
         setScoreV("1")
         setGoal(true)
       }
       else {
-        setComment40(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>40'</span>GOAL! {myTeamVisit[0].name}</li>)
+        setComment40(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>40'</span><img src="images/goal.png" style={styles.gameImg} /><span style={styles.gameTime}>GOAL!</span> {myTeamVisit[2].name}{" "}<img src={playerVisit.teamLogo} style={styles.gameImg} /></li>)
         setScoreV("1")
         setGoal(true)
       }
     }, 13000)
-    setTimeout(function(){
+    setTimeout(function () {
       if (result > 0) {
         setGoal(false)
-        setComment45(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>45'</span> HALF-TIME ...players resting</li>)
+        setComment45(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>45'</span><img src="images/ref.png" style={styles.gameImg} /> Halftime </li>)
       }
       else if (result === 0) {
         setGoal(false)
-        setComment45(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>45'</span> HALF-TIME ...players resting</li>)
+        setComment45(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>45'</span><img src="images/ref.png" style={styles.gameImg} /> Halftime </li>)
       }
       else {
         setGoal(false)
-        setComment45(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>45'</span> HALF-TIME ...players resting</li>)
+        setComment45(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>45'</span><img src="images/ref.png" style={styles.gameImg} /> Halftime </li>)
       }
     }, 14000)
-    setTimeout(function(){
+    setTimeout(function () {
       if (result > 0) {
-        setComment50(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>45'</span> Second half begins</li>)
+        setComment50(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>45'</span> Second Half Begins</li>)
       }
       else if (result === 0) {
-        setComment50(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>45'</span> Second half begins</li>)
+        setComment50(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>45'</span> Second Half Begins</li>)
       }
       else {
-        setComment50(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>45'</span> Second half begins</li>)
+        setComment50(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>45'</span> Second Half Begins</li>)
       }
     }, 15000)
-    setTimeout(function(){
+    setTimeout(function () {
       if (result > 0) {
-        setComment55(<li class="list-group-item rgba-black-light">50' Miss {myTeamVisit[9].name}</li>)
+        setComment55(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>50'</span> Miss {myTeamVisit[3].name}</li>)
       }
       else if (result === 0) {
-        setComment55(<li class="list-group-item rgba-black-light">50' Miss {myTeamVisit[9].name}</li>)
+        setComment55(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>50'</span> Long-shot {myTeamVisit[3].name}</li>)
       }
       else {
-        setComment55(<li class="list-group-item rgba-black-light">50' Miss {myTeamVisit[9].name}</li>)
+        setComment55(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>50'</span> Miss {myTeamVisit[3].name}</li>)
       }
     }, 16000)
-    setTimeout(function(){
+    setTimeout(function () {
       if (result > 0) {
-        setComment60(<li class="list-group-item rgba-black-light">55' Faul yellow card {myTeamVisit[4].name}</li>)
+        setComment60(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>55'</span> <img src="images/yellow.png" style={styles.gameImg} />Foul {myTeamVisit[7].name} is shown the yellow card</li>)
       }
       else if (result === 0) {
-        setComment60(<li class="list-group-item rgba-black-light">55' Faul yellow card {myTeamVisit[4].name}</li>)
+        setComment60(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>55'</span><img src="images/yellow.png" style={styles.gameImg} /> Foul {myTeamVisit[7].name} is shown the yellow card</li>)
       }
       else {
-        setComment60(<li class="list-group-item rgba-black-light">55' Faul yellow card {myTeamVisit[4].name}</li>)
+        setComment60(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>55'</span> <img src="images/yellow.png" style={styles.gameImg} />Foul  {myTeamVisit[7].name} is shown the yellow card </li>)
       }
     }, 17000)
-    setTimeout(function(){
+    setTimeout(function () {
       if (result > 0) {
-        setComment65(<li class="list-group-item rgba-black-light">60' GOAL! {myTeamLocal[0].name}</li>)
+        setComment65(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>60'</span> <img src="images/goal.png" style={styles.gameImg} /><span style={styles.gameTime}>GOAL!</span> by {myTeamLocal[4].name}{" "}<img src={playerLocal.teamLogo} style={styles.gameImg} /></li>)
         setScoreL("2")
         setGoal(true)
       }
       else if (result === 0) {
-        setComment65(<li class="list-group-item rgba-black-light">60' Good defense {myTeamLocal[0].name}</li>)
+        setComment65(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>60'</span> Good defense by {myTeamLocal[4].name}</li>)
       }
       else {
-        setComment65(<li class="list-group-item rgba-black-light">60' Good defense {myTeamLocal[0].name}</li>)
+        setComment65(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>60'</span> Foul by {myTeamVisit[4].name} is shown the yellow card</li>)
       }
     }, 18000)
-    setTimeout(function(){
+    setTimeout(function () {
       if (result > 0) {
         setGoal(false)
-        setComment70(<li class="list-group-item rgba-black-light">65' Long-shot {myTeamVisit[5].name}</li>)
+        setComment70(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>65'</span> Long shot {myTeamVisit[5].name}</li>)
       }
       else if (result === 0) {
-        setComment70(<li class="list-group-item rgba-black-light">65' Long-shot {myTeamVisit[5].name}</li>)
+        setComment70(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>65'</span> Miss {myTeamVisit[5].name}</li>)
       }
       else {
-        setComment70(<li class="list-group-item rgba-black-light">65' Long-shot {myTeamVisit[5].name}</li>)
+        setComment70(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>65'</span> Long shot {myTeamVisit[5].name}</li>)
       }
     }, 19000)
-    setTimeout(function(){
+    setTimeout(function () {
       if (result > 0) {
-        setComment75(<li class="list-group-item rgba-black-light">70' Corner Kick</li>)
+        setComment75(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>70'</span><img src="images/corner.png" style={styles.gameImg} /> Corner Kick</li>)
       }
       else if (result === 0) {
-        setComment75(<li class="list-group-item rgba-black-light">70' Corner Kick</li>)
+        setComment75(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>70'</span><img src="images/corner.png" style={styles.gameImg} />Corner Kick</li>)
       }
       else {
-        setComment75(<li class="list-group-item rgba-black-light">70' Corner Kick</li>)
+        setComment75(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>70'</span><img src="images/corner.png" style={styles.gameImg} />Corner Kick</li>)
       }
     }, 20000)
-    setTimeout(function(){
+    setTimeout(function () {
       if (result > 0) {
         setGoal(false)
-        setComment80(<li class="list-group-item rgba-black-light">75' Head-shot close to the net {myTeamVisit[9].name}</li>)
+        setComment80(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>75'</span> Headshot close to the net {myTeamVisit[9].name}</li>)
       }
       else if (result === 0) {
-        setComment80(<li class="list-group-item rgba-black-light">75' Head-shot close to the net {myTeamVisit[9].name}</li>)
+        setComment80(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>75'</span> Headshot close to the net {myTeamVisit[9].name}</li>)
       }
       else {
-        setComment80(<li class="list-group-item rgba-black-light">75' Head-shot close to the net {myTeamVisit[9].name}</li>)
+        setComment80(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>75'</span> Headshot close to the net {myTeamVisit[9].name}</li>)
       }
     }, 21000)
-    setTimeout(function(){
+    setTimeout(function () {
       if (result > 0) {
-        setComment85(<li class="list-group-item rgba-black-light">80' Match getting hot!</li>)
+        setComment85(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>80'</span><img src="images/ref.png" style={styles.gameImg} /> Offside</li>)
       }
       else if (result === 0) {
-        setComment85(<li class="list-group-item rgba-black-light">80' Match getting hot!</li>)
+        setComment85(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>80'</span> Attempt Saved! </li>)
       }
       else {
-        setComment85(<li class="list-group-item rgba-black-light">80' Match getting hot!</li>)
+        setComment85(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>80'</span> Attempt Missed! {myTeamLocal[4].name}</li>)
       }
     }, 22000)
-    setTimeout(function(){
+    setTimeout(function () {
       if (result > 0) {
-        setComment90(<li class="list-group-item rgba-black-light">85' Interception {myTeamLocal[9].name}</li>)
+        setComment90(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>85'</span> Interception {myTeamLocal[8].name}</li>)
       }
       else if (result === 0) {
-        setComment90(<li class="list-group-item rgba-black-light">85' Interception {myTeamLocal[9].name}k</li>)
+        setComment90(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>85'</span> Attempt Missed by {myTeamLocal[8].name} </li>)
       }
       else {
-        setComment90(<li class="list-group-item rgba-black-light">85' Interception {myTeamLocal[9].name}</li>)
+        setComment90(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>85'</span> <img src="images/red.png" style={styles.gameImg} />Foul! {myTeamVisit[7].name} is shown the RED Card!!!</li>)
       }
     }, 23000)
-    setTimeout(function(){
+    setTimeout(function () {
 
       if (result > 0) {
-        setComment90A(<li class="list-group-item rgba-black-light">90' Match ended!    you WIN      2 - 1</li>)
+        setComment90A(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>90'</span> <img src="images/ref.png" style={styles.gameImg} />Second Half Ends!    You WIN!      2 - 1</li>)
       }
       else if (result === 0) {
-        setComment90A(<li class="list-group-item rgba-black-light">90' Match ended!    you TIE      1 - 1</li>)
+        setComment90A(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>90'</span> <img src="images/ref.png" style={styles.gameImg} />Second Half Ends!    You TIE!      1 - 1</li>)
       }
       else {
-        setComment90A(<li class="list-group-item rgba-black-light">90' Match ended!    you LOOSE      0 - 1</li>)
+        setComment90A(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>90'</span> <img src="images/ref.png" style={styles.gameImg} />Second Half Ends!    You LOSE!      0 - 1</li>)
       }
     }, 24000)
 
   }
-
   // ----*****---***
   const visit = () => {
     return (
@@ -523,14 +535,23 @@ function GameContent() {
   const loader = () => {
     return (
       <>
-        <div class="spinner-grow text-secondary" role="status">
+        <div class="spinner-grow text-warning" role="status">
           <span class="sr-only">Loading...</span>
         </div>
-        <p className="text-secondary bold animated heartBeat slower">Finding Player</p>
+        <p className="text-warning bold animated heartBeat infinite">Finding Player</p>
 
       </>
     );
   };
+
+  useEffect(() => {
+    if(live) {
+      setLive(false)
+    }
+    else {
+      setLive(true)
+    }
+  }, [comment90A])
 
   return (
     
@@ -539,14 +560,18 @@ function GameContent() {
       <div className="row">
         <div className="col-12">
           <h2 className="card-header-title mb-3 amber-text">PLAY A GAME</h2>
-          {/* <button onClick={playGame} className="btn btn-outline-warning yellow" style={styles.buttonS}>
-            Play a Match{" "}
-            <i className="fas fa-futbol light-green-text-2"></i>
-          </button> */}
-          <button onClick={addComments} className="btn btn-outline-warning yellow" style={styles.buttonS}>
-            PLAY{" "}
-            <i className="fas fa-futbol light-green-text-2"></i>
-          </button>
+          {
+            bool
+            ?
+              ""
+            :
+              <button onClick={addComments} className="btn btn-outline-warning yellow" style={styles.buttonS}>
+                PLAY{" "}
+                  <i className="animated fa-spin fas fa-futbol light-green-text-2"></i>
+              </button>
+            
+          }
+
         </div>
 
       </div>
@@ -566,16 +591,25 @@ function GameContent() {
 
             <div className="card-body card-body-cascade text-center row">
 
-              <div className="col-3"><div>{playerLocal.teamName}</div><img src={playerLocal.teamLogo} style={styles.gameLogo}/></div>
+              <div className="col-12 col-sm-3"><div>{playerLocal.teamName}</div><img src={playerLocal.teamLogo} style={styles.gameLogo}/></div>
 
               
               {visitBool 
               ? 
                 <>
-                  <div className="col-2" style={styles.scores}><strong  >{scoreL}</strong></div>
-                  <div className="col-2" style={styles.scores}>-</div>
-                  <div className="col-2" style={styles.scores}><strong >{scoreV}</strong></div>
-                  <div className="col-3"><div>{playerVisit.teamName}</div><img src={playerVisit.teamLogo} style={styles.gameLogo}/></div>
+                  <div className="col-4 col-sm-2" style={styles.scores}><strong  >{scoreL}</strong></div>
+                  <div className="col-4 col-sm-2" style={styles.scores2}>
+                    {
+                      live
+                      ?
+                      <h4 className="grey-text">• LIVE</h4>
+                      :
+                      <h4 className="animated pulse infinite red-text glow">• LIVE</h4>
+                    }
+                    <div style={styles.scores2}>-</div>
+                  </div>
+                  <div className="col-4 col-sm-2" style={styles.scores}><strong >{scoreV}</strong></div>
+                  <div className="col-12 col-sm-3"><div>{playerVisit.teamName}</div><img src={playerVisit.teamLogo} style={styles.gameLogo}/></div>
                 </>  
               : ""}
               
@@ -587,7 +621,7 @@ function GameContent() {
       </div>
       <br/>
       <div className="row">
-        <div className="col-3">
+        <div className="col-md-12 col-lg-3">
     
           <div className="card card-cascade white-text rgba-black-light">
 
@@ -608,7 +642,7 @@ function GameContent() {
           </div>
       
         </div>
-        <div className="col-6">
+        <div className="col-md-12 col-lg-6">
           {goal 
           ?
             <div className="goal row">
@@ -653,7 +687,7 @@ function GameContent() {
 
           </div>
         </div>
-        <div className="col-3">
+        <div className="col-md-12 col-lg-3">
           <div className="card card-cascade white-text rgba-black-light">
 
             <div className="view view-cascade gradient-card-header rgba-purple-light darken-3 text-white">

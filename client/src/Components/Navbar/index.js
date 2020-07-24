@@ -1,9 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import AuthService from "../../Services/AuthService";
-import { AuthContext } from "../../Context/AuthContext";
+
 import { useAuth0 } from "@auth0/auth0-react";
-import LogoutButton from "../LogoutButton";
 
 const styles = {
   navB: {
@@ -17,24 +15,12 @@ const styles = {
 const Navbar = (props) => {
   const { isAuthenticated, user, setIsAuthenticated, setUser } = useAuth0();
 
-  const logoutHandler = () => {
-    AuthService.logout().then((data) => {
-      if (data.success) {
-        console.log(data);
-        setUser(data.user);
-        setIsAuthenticated(false);
-      }
-    });
-  };
-
+  const { logout } = useAuth0();
   const unauthenticatedNavBar = () => {
     return (
       <>
         <Link to="/" className="nav-item">
           <li className="nav-link">Home</li>
-        </Link>
-        <Link to="/login" className="nav-item">
-          <li className="nav-link">Login</li>
         </Link>
         <Link to="/register" className="nav-item">
           <li className="nav-link">Register</li>
@@ -55,7 +41,50 @@ const Navbar = (props) => {
         <Link to="/myteam" className="nav-item">
           <li className="nav-link">My Team</li>
         </Link>
-        <LogoutButton />
+      </>
+    );
+  };
+
+  const authenticatedGameBar = () => {
+    return (
+      <>
+        <li className="nav-item">
+          <Link className="nav-link" to="/game">
+            <i className="fas fa-futbol light-green-text-2"></i>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/info">
+            <i className="fas fa-globe light-green-text-2"></i>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/streams">
+            <i className="fas fa-tv light-green-text-2"></i>
+          </Link>
+        </li>
+        <li className="nav-item" onClick={() => logout()}>
+          <Link className="nav-link">
+            <i className="fa fa-power-off" placeholder="logout"></i>
+          </Link>
+        </li>
+      </>
+    );
+  };
+
+  const unauthenticatedGameBar = () => {
+    return (
+      <>
+        <li className="nav-item">
+          <Link className="nav-link" to="/streams">
+            <i className="fas fa-tv light-green-text-2"></i>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/info">
+            <i className="fas fa-globe light-green-text-2"></i>
+          </Link>
+        </li>
       </>
     );
   };
@@ -92,26 +121,9 @@ const Navbar = (props) => {
             {!isAuthenticated ? unauthenticatedNavBar() : authenticatedNavBar()}
           </ul>
           <ul className="navbar-nav nav-flex-icons">
-            <li className="nav-item">
-              <Link className="nav-link" to="/game">
-                <i className="fas fa-futbol light-green-text-2"></i>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <a
-                className="nav-link"
-                href="https://github.com/diegolehyt"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="far fa-calendar-alt light-green-text-2"></i>
-              </a>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/streams">
-                <i className="fas fa-tv light-green-text-2"></i>
-              </Link>
-            </li>
+            {!isAuthenticated
+              ? unauthenticatedGameBar()
+              : authenticatedGameBar()}
           </ul>
         </div>
       </div>

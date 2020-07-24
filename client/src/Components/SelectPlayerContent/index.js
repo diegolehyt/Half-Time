@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./style.css";
 import logos from "./logos.json"
 import logosB from "./logosB.json"
 import logosC from "./logosC.json"
 import logosD from "./logosD.json"
 import logosE from "./logosE.json"
-// import API2, * as API from '../../utils/API2'
 import PlayerCardB from "../PlayerCardB/index";
-import AuthService from "../../Services/AuthService";
 import { useAuth0 } from "@auth0/auth0-react";
 import DropDownItem from "../DropDownItem";
 
@@ -28,9 +27,9 @@ const styles = {
     fontFamily: "'Saira Semi Condensed', sans-serif",
     textAlign: "center",
     marginTop: "77px",
-    marginBottom: "70px",
-    height: "400vh",
-    width: "100vh",
+    marginBottom: "70px"
+    // height: "400vh",
+    // width: "100vh",
   },
   headerE: {
     width: "200px",
@@ -59,6 +58,7 @@ function SelectPlayerContent() {
   const [objId, setObjId] = useState("");
 
   const [boo, setBoo] = useState(false);
+  const [submited, setSubmited] = useState(false);
   const { isAuthenticated, user, setIsAuthenticated, setUser } = useAuth0();
 
   const [search, setSearch] = useState("");
@@ -126,20 +126,7 @@ function SelectPlayerContent() {
   // onclick that calls a function that makes an API call sending whats in the state to the backend.
 
   // API call : delete what was there before, create new team
-  // const callApi = async () => {
-  //   try {
-  //     const token = await getAccessTokenSilenty();
 
-  //     const response = await fetch(`${apiOrigin}/api/users/user:id`, {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //       body: JSON.stringify({ myteam: selectedPlayers }),
-  //     });
-  //   }
-  // };
-
-  //
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -181,6 +168,7 @@ function SelectPlayerContent() {
       body: JSON.stringify(newTeam),
     }).then((response) => {
       console.log(response);
+      setSubmited(true)
     });
 
     // AuthService.register2(user).then((data) => {
@@ -251,17 +239,40 @@ function SelectPlayerContent() {
     return (
       <>
         <div style={styles.headerB}>
-          <strong>
-            Max Amount of Players reached! {selectedPlayers.length} / MAX!{" "}
-          </strong>
-          <button
-            type="submit"
-            className="btn btn-outline-warning yellow"
-            onClick={onSubmit}
-            style={styles.buttonS}
-          >
-            Submit Team
-          </button>
+
+          {
+            submited
+            ?
+              <>
+                <strong>
+                  Team submited! {" "}
+                </strong>
+                <Link to="/myteam" className="btn btn-outline-warning yellow" style={styles.buttonS}>
+                  Formation{" "}
+                  <i className="fas fa-street-view light-green-text-2"></i>
+                </Link>
+                <Link to="/game" className="btn btn-outline-warning yellow" style={styles.buttonS}>
+                  Play{" "}
+                  <i className="animated bounce infinite fas fa-futbol light-green-text-2"></i>
+                </Link>
+              </>  
+            :
+              <>
+                <strong>
+                  Max Amount of Players reached! {selectedPlayers.length} / MAX!{" "}
+                </strong>
+                <button
+                  type="submit"
+                  className="btn btn-outline-warning yellow"
+                  onClick={onSubmit}
+                  style={styles.buttonS}
+                >
+                  Submit{" "}
+                  <i className="Team fas fa-paper-plane light-green-text-2"></i> 
+                </button>
+              </>  
+          }
+
         </div>
         <div className="row d-flex justify-content-center">
           {selectedPlayers.map((player) => (
@@ -279,14 +290,14 @@ function SelectPlayerContent() {
   };
 
   return (
-    <div style={styles.headerD} className="col-12 bcImg2 img-fluid">
+    <div style={styles.headerD} className="col-12 img-fluid">
       {/* <div>
         {selectedPlayers.map(player => (
           <p>{player.name}</p>
         ))}
       </div> */}
       <div className="row" >
-        <div className="col-2">
+        <div className="col-12 col-sm-6 col-md-4 col-lg-2">
           <button
             class="btn transparent text-white dropdown-toggle mr-4"
             type="button"
@@ -305,7 +316,7 @@ function SelectPlayerContent() {
           </div>
         </div>
 
-        <div className="col-2">
+        <div className="col-12 col-sm-6 col-md-4 col-lg-2">
           <button
             class="btn transparent text-white dropdown-toggle mr-4"
             type="button"
@@ -323,7 +334,7 @@ function SelectPlayerContent() {
           </div>
         </div>
 
-        <div className="col-2">
+        <div className="col-12 col-sm-6 col-md-4 col-lg-2">
           <button
             class="btn transparent text-white dropdown-toggle mr-4"
             type="button"
@@ -341,7 +352,7 @@ function SelectPlayerContent() {
           </div>
         </div>
 
-        <div className="col-2">
+        <div className="col-12 col-sm-6 col-md-4 col-lg-2">
           <button
             class="btn transparent text-white dropdown-toggle mr-4"
             type="button"
@@ -359,7 +370,7 @@ function SelectPlayerContent() {
           </div>
         </div>
 
-        <div className="col-2">
+        <div className="col-12 col-sm-6 col-md-4 col-lg-2">
           <button
             class="btn transparent text-white dropdown-toggle mr-4"
             type="button"
@@ -379,16 +390,34 @@ function SelectPlayerContent() {
         {
           teamLogo
           ?
-          <div className="col-2 text-center">
+          <div className="col-12 col-sm-6 col-md-4 col-lg-2 text-center">
             <img src={teamLogo} style={styles.headerE}/>
-            <h3 className="white-text">{teamName}</h3>
           </div>
         :
         ""
         }
   
+      </div>
+      <div className="row">
+        <div className="col-12">
+          <div className="card card-cascade rgba-black-light white-text">
+
+            <div className="view view-cascade gradient-card-header  rgba-purple-light darken-3 text-white">
+
+              <h2 className="card-header-title mb-3">POPULAR PLAYERS</h2>
+
+            </div>
+
+            
+            <div className="col-12">
+              {selectedPlayers.length < 11 ? addPlayers() : completePlayers()}
+            </div>
+
+
+          </div>
+        </div>
       </div>  
-      {selectedPlayers.length < 11 ? addPlayers() : completePlayers()}
+      
     </div>
   );
 }
