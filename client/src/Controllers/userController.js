@@ -34,7 +34,7 @@ export default {
     });
   },
   saveteam: (team) => {
-    return fetch("/api/user/saveteam", {
+    return fetch("/api/users/saveteam", {
       method: "post",
       body: JSON.stringify({ myteam: team }),
       headers: {
@@ -45,7 +45,7 @@ export default {
       .then((data) => data);
   },
   register2: (user) => {
-    return fetch("/api/user/saveteam", {
+    return fetch("/api/users/saveteam", {
       method: "post",
       body: JSON.stringify(user),
       headers: {
