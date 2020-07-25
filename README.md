@@ -1,22 +1,7 @@
-# Google Books Search ![Diego](https://img.shields.io/badge/version-v1.0.0-yellow) ![code size](https://img.shields.io/github/languages/code-size/diegolehyt/Google-Books) ![language](https://img.shields.io/github/languages/top/diegolehyt/Google-Books) ![last comit](https://img.shields.io/github/last-commit/diegolehyt/Google-Books)  
-### Homework - 21 / Google Search with React app
+# Half-Time ![Diego](https://img.shields.io/badge/version-v1.0.0-yellow) ![code size](https://img.shields.io/github/languages/code-size/diegolehyt/Half-Time) ![language](https://img.shields.io/github/languages/top/diegolehyt/Half-Time) ![last comit](https://img.shields.io/github/last-commit/diegolehyt/Half-Time)  
+### Half-Time
 
 - Link to Deploy app, at the end. [>> GO ⬇️ <<](#url)
-
-![main](assets/1.png)
-
-- Google Books Search with React!
-
-
-- Search Book and save it.
-
-![online](assets/2.gif)
-
-
-- Saved Books page and Delete a book from your list.
-
-![offline](assets/3.gif)
-
 
 ## 📌Table of Content
 
@@ -32,14 +17,17 @@
 * [Questions](#questions)
 
 ## 📋Description
-"Google Books" is and app built with React framework (font-end),  Express server (back-end), plus MongoDB and google API for the database, This app will allow the user to search for books by name, view, save and delete them as well. 
-```
-A client would benefit greatly 
-from being able to view and save books from google. 
-So later he can find the list of books and read them all.
-```
-- Open the application using the URL on your Browser (recomended: Google Chrome).
+We are creating a fantasy soccer game. In this application, the user will be able to register an account and then login for future visits. Once logged in, the user will have the option to create a fantasy soccer team from professional soccer players around the world. 
 
+The user will be able to select players to fill all 11 spots on their fantasy team. Once all players have been selected, the user will be able to save their fantasy team. 
+
+In addition to this, the user will also be able to update their team with different players whenever they like. Once the user is happy with their team, the user can ‘play a match’ with other teams created from other users. The user can also view current news about the soccer world through a tab on the navbar.
+
+This app allows you to create the team of your dreams without any restrictions. Any user who wishes to have their favorite players from every major league on one team can now do so using our app. This app provides endless entertainment.
+
+In addition, this app can help the user familiarize themselves with professional soccer players around the world, whether it be Lionel Messi, or the american star, Christian Pulisic. This app allows the user to see the latest results in the soccer world as well, always keeping the user informed. 
+ 
+Lastly, this app is free to play, so anyone can join in on the fun.
 
 ## 💿Installation
   1. Clone the repository 
@@ -53,12 +41,13 @@ Open the server app using ```npm start``` in your terminal (root repo).
  ```
  npm run test. (included with React app)
  ```
-
-
-## 🤝Contributing
-Feel free to pull request and give me your suggestions if any.
+## 🤝Contributors
+John Blume
+Maxime Semegen
+Diego Lehyt
+Ryan Schock
           
-## ⚖️License  ![License](https://img.shields.io/github/license/diegolehyt/Google-Books)
+## ⚖️License  ![License](https://img.shields.io/github/license/diegolehyt/Half-Time)
 This project is under the MIT License.
 
 ## 📑Details
@@ -67,19 +56,20 @@ This repository content the necessary files to host a express server using the M
 
 ## 📀Features
 - Material Design for Bootstrap styles
-
-  ![neon](assets/1.png)
-
+- Auth0 for Authentication
+- Various React NPM packages
+- MERN
 
 ## 🔗URL  
 
 - Check my Demos on my Youtube page "https://www.youtube.com/channel/UCev6xJU1FGx1IbRjQhtjKcQ"
-- The URL to this repo page is "https://github.com/diegolehyt/Google-Books.git"
-- Deploy App on Heroku Here! --> "https://shrouded-brook-95398.herokuapp.com/" <--
+- The URL to this repo page is "https://github.com/diegolehyt/Half-Time.git"
+- Deploy App on Heroku Here! --> "https://pacific-headland-83804.herokuapp.com/" <--
 
 ## 👤Questions  
 ![youtube](https://img.shields.io/badge/YouTube-red?style=flat&logo=youtube)  ![Heroku](https://img.shields.io/badge/Heroku-purple?style=flat&logo=heroku) ![React](https://img.shields.io/badge/React-gray?style=flat&logo=react)  ![MongoDB](https://img.shields.io/badge/MongoDB-black?style=flat&logo=mongodb)  ![Social](https://img.shields.io/github/followers/diegolehyt?style=social) 
 
 ![Profile img](https://avatars1.githubusercontent.com/u/59458188?v=4)
-
-✉️ E-mail: diegolehy00@gmail.com
+![Profile img](https://avatars2.githubusercontent.com/u/58781339?s=460&u=8f41ed77f56d55d046589d54947399507a58c2d4&v=4)
+![Profile img](https://avatars3.githubusercontent.com/u/59546790?s=460&u=7c4e0a53ceae06f3dfc565da06fe1466cd644fbd&v=4)
+![Profile img](https://avatars0.githubusercontent.com/u/57155115?s=460&u=67252187b982e42a8a00b04a568e8865c0b08ff8&v=4)
