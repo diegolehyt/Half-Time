@@ -4,6 +4,9 @@ const Player = require("../models/Player");
 const jwt = require("express-jwt");
 const jwksRsa = require("jwks-rsa");
 const authConfig = require("../client/src/auth_config.json");
+if (process.env.AUTH0_API) {
+  authConfig.clientId = process.env.AUTH0_API
+}
 
 if (!authConfig.domain || !authConfig.audience) {
   throw new Error(

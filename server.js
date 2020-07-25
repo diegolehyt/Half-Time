@@ -15,6 +15,11 @@ app.use(
   })
 );
 
+// Serve up static assets
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+
 const mongoURI = process.env.MONGO_URL
   ? process.env.MONGO_URL
   : "mongodb://localhost:27017/half-time";
