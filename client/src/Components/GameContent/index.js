@@ -507,13 +507,13 @@ function GameContent() {
     setTimeout(function () {
 
       if (result > 0) {
-        setComment90A(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>90'</span> <img src="images/ref.png" style={styles.gameImg} />Second Half Ends!    You WIN!      2 - 1</li>)
+        setComment90A(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>90'</span> <img src="images/ref.png" style={styles.gameImg} />Second Half Ends!    You <span className="light-green-text">WIN!</span>      2 - 1</li>)
       }
       else if (result === 0) {
-        setComment90A(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>90'</span> <img src="images/ref.png" style={styles.gameImg} />Second Half Ends!    You TIE!      1 - 1</li>)
+        setComment90A(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>90'</span> <img src="images/ref.png" style={styles.gameImg} />Second Half Ends!    You <span className="light-blue-text">TIE!</span>      1 - 1</li>)
       }
       else {
-        setComment90A(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>90'</span> <img src="images/ref.png" style={styles.gameImg} />Second Half Ends!    You LOSE!      0 - 1</li>)
+        setComment90A(<li class="list-group-item rgba-black-light"><span style={styles.gameTime}>90'</span> <img src="images/ref.png" style={styles.gameImg} />Second Half Ends!    You <span className="red-text">LOSE!</span>      0 - 1</li>)
       }
     }, 24000)
 
