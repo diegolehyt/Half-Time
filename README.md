@@ -1,6 +1,46 @@
 # Half-Time ![Diego](https://img.shields.io/badge/version-v1.0.0-yellow) ![code size](https://img.shields.io/github/languages/code-size/diegolehyt/Half-Time) ![language](https://img.shields.io/github/languages/top/diegolehyt/Half-Time) ![last comit](https://img.shields.io/github/last-commit/diegolehyt/Half-Time)  
 ### Half-Time
 
+- Half-Time.
+
+![online](assets/1.gif)
+
+
+- Login.
+
+![online](assets/2.gif)
+
+
+- News.
+
+![online](assets/3.gif)
+
+
+- Streams.
+
+![online](assets/4.gif)
+
+- Info.
+
+![online](assets/5.gif)
+
+- Select Players and Logo.
+
+
+![online](assets/6.gif)
+
+
+- Formation.
+
+
+![online](assets/7.gif)
+
+
+- Fantasy Game.
+
+![online](assets/8.gif)
+
+
 - Link to Deploy app, at the end. [>> GO ⬇️ <<](#url)
 
 ## 📌Table of Content
@@ -62,14 +102,25 @@ This repository content the necessary files to host a express server using the M
 
 ## 🔗URL  
 
-- Check my Demos on my Youtube page "https://www.youtube.com/channel/UCev6xJU1FGx1IbRjQhtjKcQ"
+- Check the Demos on Youtube "https://youtu.be/W9GqV0Bdgrk"
 - The URL to this repo page is "https://github.com/diegolehyt/Half-Time.git"
-- Deploy App on Heroku Here! --> "https://pacific-headland-83804.herokuapp.com/" <--
+- Deploy App on Heroku Here! --> "https://still-taiga-30261.herokuapp.com/" <--
 
 ## 👤Questions  
 ![youtube](https://img.shields.io/badge/YouTube-red?style=flat&logo=youtube)  ![Heroku](https://img.shields.io/badge/Heroku-purple?style=flat&logo=heroku) ![React](https://img.shields.io/badge/React-gray?style=flat&logo=react)  ![MongoDB](https://img.shields.io/badge/MongoDB-black?style=flat&logo=mongodb)  ![Social](https://img.shields.io/github/followers/diegolehyt?style=social) 
 
-![Profile img](https://avatars1.githubusercontent.com/u/59458188?v=4)
+![Profile img](https://avatars3.githubusercontent.com/u/59458188?s=460&u=6a9312004c86a260b27601dbf306e7cf0b167e9e&v=4)
+
+✉️ E-mail: diegolehy00@gmail.com
+
 ![Profile img](https://avatars2.githubusercontent.com/u/58781339?s=460&u=8f41ed77f56d55d046589d54947399507a58c2d4&v=4)
+
+✉️ E-mail: max.semegen@gmail.com
+
 ![Profile img](https://avatars3.githubusercontent.com/u/59546790?s=460&u=7c4e0a53ceae06f3dfc565da06fe1466cd644fbd&v=4)
+
+✉️ E-mail: jukkasc2@gmail.com
+
 ![Profile img](https://avatars0.githubusercontent.com/u/57155115?s=460&u=67252187b982e42a8a00b04a568e8865c0b08ff8&v=4)
+
+✉️ E-mail: johnblume5@gmail.com
